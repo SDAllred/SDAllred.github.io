@@ -253,7 +253,7 @@ var MapVis = function() {
 	}
 */
 
-	this.updateMap = function (usStateData, names ,schools){
+	this.updateMap = function (usStateData, names , schools){
 
 		//fschools = filterData(schools);
 		
