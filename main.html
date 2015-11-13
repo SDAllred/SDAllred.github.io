@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Project</title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js" charset="utf-8"></script>
+    <script src="filterScript.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<style>
+		
+		.filters {
+			width: 30%;
+            height: 500px;
+            float: left;
+			text-align:center;
+			border-style: solid;
+			border-width: .1px;
+		}
+		.map {
+			width: 40%;
+            height: 500px;
+            float: left;
+			text-align:center;
+			border-style: solid;
+			border-width: .1px;
+        }
+		.groupSchools {
+			width: 30%;
+            height: 500px;
+            float: right;
+			text-align:center;
+			border-style: solid;
+			border-width: .1px;
+		}
+		.groupDetails {
+			width: 50%;
+            height: 500px;
+            float: left;
+			text-align:center;
+			border-style: solid;
+			border-width: .1px;
+		}
+		.selectedSchools {
+			width: 50%;
+            height: 500px;
+            float: right;
+			text-align:center;
+			border-style: solid;
+			border-width: .1px;
+		}
+	</style>
+</head>
+<body>
+
+	<div class="filters">
+		<h1>Filters</h1>    
+		<p>
+			<label for="amount">Tuition Cost:</label>
+			<input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
+			<div id="slider-range"></div>
+		</p>
+ 
+	</div>
+
+	<div class="map">
+                <h1>Map</h1>   
+				<svg height="200" width="200"></svg>
+	</div>
+
+	<div class="groupSchools">
+                <h1>Group of Schools</h1>  
+	</div>
+	
+	<div class="groupDetails">
+                <h1>Group Details</h1>      
+	</div>
+	
+	<div class="selectedSchools">	
+                <h1>Selected School</h1>   
+	</div>
+	
+
+
+</body>
+</html>
