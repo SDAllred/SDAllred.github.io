@@ -1,0 +1,65 @@
+		body{
+			
+		
+		}
+		
+		
+		#CollegeScoreCardVis{
+			width: 1500px;
+			margin:auto;
+			border: 5px groove grey;
+			background: #3399ff;
+		
+		}
+		
+		
+		#SelectorRow {
+			width:1500px;
+			
+		
+		}
+		
+		
+		
+		.filters {
+			width: 200px;
+            height: 500px;
+            float: left;
+			text-align:center;
+			/*border: 1px solid black;*/
+		}
+		.map {
+			width: 800px;
+            height: 500px;
+            float: left;
+			text-align:center;
+			/*border: 1px solid black;*/
+        }
+		.groupSchools {
+			width: 500px;
+            height: 500px;
+            float: right;
+			text-align:center;
+			/*border: 1px solid black;*/
+		}
+		
+		
+		#DisplayRow{
+			width:1500px;
+		
+		}
+		
+		.groupDetails {
+			width: 800px;
+            height: 400px;
+            float: left;
+			text-align:center;
+			/*border: 1px solid black;*/
+		}
+		.selectedSchools {
+			width: 700px;
+            height: 400px;
+            float: right;
+			text-align:center;
+			/*border: 1px solid black;*/
+		}

@@ -3,83 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <title>Project</title>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js" charset="utf-8"></script>
-    <script src="filterScript.js"></script>
+	
+	<!-- external javascript libraries -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+	<script src="http://d3js.org/queue.v1.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/1.6.19/topojson.min.js"></script>
+	
+	<!--  These links adde for the widgit controls.  -->
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+	<script type="text/javascript" src="http://rawgit.com/jquery/jquery-mousewheel/master/jquery.mousewheel.min.js"></script>
+	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+	
+	
+	<!-- here are our scripts -->
+	<script src="js/MapScript.js"></script>
+	<script src="js/CollegeVis.js"></script>
+	<script src="js/filterScript.js"></script>
+	<script src="js/main.js"></script>
+    
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<style>
-		
-		.filters {
-			width: 30%;
-            height: 500px;
-            float: left;
-			text-align:center;
-			border-style: solid;
-			border-width: .1px;
-		}
-		.map {
-			width: 40%;
-            height: 500px;
-            float: left;
-			text-align:center;
-			border-style: solid;
-			border-width: .1px;
-        }
-		.groupSchools {
-			width: 30%;
-            height: 500px;
-            float: right;
-			text-align:center;
-			border-style: solid;
-			border-width: .1px;
-		}
-		.groupDetails {
-			width: 50%;
-            height: 500px;
-            float: left;
-			text-align:center;
-			border-style: solid;
-			border-width: .1px;
-		}
-		.selectedSchools {
-			width: 50%;
-            height: 500px;
-            float: right;
-			text-align:center;
-			border-style: solid;
-			border-width: .1px;
-		}
-	</style>
+	
+	<!-- style sheets for css -->
+	<link rel="stylesheet" href="css/main.css">
+	<link rel="stylesheet" href="css/MapStyles.css">
 </head>
 <body>
+	<div id="CollegeScoreCardVis">
+		<table>
+			<tr>
+				<td>
+					<div id="SelectorRow">
+						<div class="filters">
+							<h1>Filters</h1>    
+							<p>
+								<label for="amount">Avg Sat Admitted:</label>
+								<div id="SatAvgSlider"></div>
+							</p>
+					 
+						</div>
 
-	<div class="filters">
-		<h1>Filters</h1>    
-		<p>
-			<label for="amount">Tuition Cost:</label>
-			<input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
-			<div id="slider-range"></div>
-		</p>
- 
-	</div>
+						<div class="map" id="map">
+									<h1>Map</h1>   
+									
+						</div>
 
-	<div class="map">
-                <h1>Map</h1>   
-				<svg height="200" width="200"></svg>
+						<div class="groupSchools">
+									<h1>Group of Schools</h1>  
+						</div>
+					<div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div id="DisplayRow">
+						<div class="groupDetails">
+									<h1>Group Details</h1>      
+						</div>
+						
+						<div class="selectedSchools">	
+									<h1>Selected School</h1>   
+						</div>
+					</div>
+				</td>
+			</tr>
+		</table>
 	</div>
-
-	<div class="groupSchools">
-                <h1>Group of Schools</h1>  
-	</div>
-	
-	<div class="groupDetails">
-                <h1>Group Details</h1>      
-	</div>
-	
-	<div class="selectedSchools">	
-                <h1>Selected School</h1>   
-	</div>
-	
-
-
 </body>
 </html>
