@@ -14,34 +14,26 @@ function updateBarChart() {
 
     // Create the x and y scales
     var xScale = d3.scale.ordinal()
-        .domain(selectedSeries.map(function (d) {
-            return d.Date
-        }))
+        .domain(1, 20)
         .rangeRoundBands([yAxisSize, svgBounds.width - yAxisSize]);
 
     var yScale = d3.scale.linear()
-        .domain([0, 10000 + d3.max(selectedSeries, function (d) {
-            if (d.data_type == "Game") {
-                return d.attendance
-            } else {
-                return 0
-            }
-        })])
+        .domain([0, 10000])
         .range([svgBounds.height - xAxisSize, 50]);
 
 
     // Create colorScale (note that colorScale
     // is global! Other functions will refer to it)
 
-    colorScale = d3.scale.linear();
-    colorScale.domain([0, d3.max(selectedSeries, function (d) {
-            if (d.data_type == "Game") {
-                return d.attendance
-            } else {
-                return 0
-            }
-        })])
-        .range(["#eff3ff", "#2171b5"]);
+    //colorScale = d3.scale.linear();
+    //colorScale.domain([0, d3.max(selectedSeries, function (d) {
+    //        if (d.data_type == "Game") {
+    //            return d.attendance
+    //        } else {
+    //            return 0
+    //        }
+    //    })])
+    //    .range(["#eff3ff", "#2171b5"]);
 
 
     // Create the bars
@@ -53,29 +45,29 @@ function updateBarChart() {
     nbar.attr("transform", "translate(0, 0) scale(1, -1)")
         .attr("y", -399)
         .attr("x", function (d) {
-            return xScale(d.Date)
+            return 10; //xScale(d.Date)
         })
         .attr("height", function (d) {
-            return (svgBounds.height - xAxisSize) - yScale(d.attendance)
+            return (svgBounds.height - xAxisSize) - 500 //yScale(d.attendance)
         })
         .attr("width", function () {
-            return ((svgBounds.width - 140) / selectedSeries.length)
-        })
-        .style("fill", function (d) {
-            return colorScale(d.attendance)
-        })
-
-
-    bar.selectAll("rect")
-        .on("mouseover", function (d) {
-            setHover(d)
-        })
-        .on("mouseout", function () {
-            clearHover()
-        })
-        .on("click", function (d) {
-            changeSelection(d)
+            return 20 //((svgBounds.width - 140) / selectedSeries.length)
         });
+        //.style("fill", function (d) {
+        //    return colorScale(d.attendance)
+        //})
+
+
+    //bar.selectAll("rect")
+    //    .on("mouseover", function (d) {
+    //        setHover(d)
+    //    })
+    //    .on("mouseout", function () {
+    //        clearHover()
+    //    })
+    //    .on("click", function (d) {
+    //        changeSelection(d)
+    //    });
 
 
     // Create the axes (hint: use #xAxis and #yAxis)
