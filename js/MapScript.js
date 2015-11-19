@@ -6,7 +6,11 @@ var MapVis = function() {
 		height = 500,
 		active;
 
-	var color = d3.scale.category10();
+	//var color = d3.scale.category20c();
+
+	var color = d3.scale.linear();
+	color.domain([0, 20])
+			.range(["#AF0025", "#FFCC00"]);
 
 	var projection = d3.geo.albersUsa()
 					.translate([400, 250])
@@ -127,7 +131,8 @@ var MapVis = function() {
 				return d.count;
 				})
 			.attr("text-anchor","middle")
-			.attr('fill', 'white');
+			.attr('fill', '#f9f9f9');
+
 		
 		state.exit()
 			.attr("opacity", 1)
