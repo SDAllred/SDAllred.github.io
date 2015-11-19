@@ -22,8 +22,6 @@ function updateBarChart() {
         .range([svgBounds.height - xAxisSize, 50]);
 
 
-    // Create colorScale (note that colorScale
-    // is global! Other functions will refer to it)
 
     //colorScale = d3.scale.linear();
     //colorScale.domain([0, d3.max(selectedSeries, function (d) {
