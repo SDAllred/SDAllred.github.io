@@ -1,18 +1,18 @@
 body { 
   color: #666; 
-  background: #f3f3f3; 
+  background: #1e1e1e;
   font: normal 10px "Helvetica Neue", Helvetica, sans-serif; 
   /*margin: 2em; */
 }
 #map {
-  border:2px solid #000;
+  /*border:2px solid #000;*/
   width:960px;
   height:550px;
-  background:#ffffe5;
+  background:#1e1e1e;
 }
 .state {
   fill: #ccc;
-  stroke: #fff;
+  stroke: #1e1e1e;
   stroke-width: .1px;
   stroke-linejoin: round;
   cursor: pointer;

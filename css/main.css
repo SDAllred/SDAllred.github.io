@@ -7,16 +7,26 @@
 		#CollegeScoreCardVis{
 			width: 1500px;
 			margin:auto;
-			border: 5px groove grey;
-			background: #3399ff;
+			/*border: 5px groove grey;*/
+			background: #1e1e1e;
 		
 		}
 		
 		
 		#SelectorRow {
 			width:1500px;
-			
+
+
 		
+		}
+
+		#TitleRow {
+			width:2000px;
+			height: 200px;
+			background: #383838;
+
+
+
 		}
 		
 		

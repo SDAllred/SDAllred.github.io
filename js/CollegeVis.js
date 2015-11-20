@@ -72,8 +72,6 @@ CollegeVis.prototype.loadData = function(){
 		if (error) throw error;
 		self.Data["schools"] = schools;
 	});
-	
-	
 
 	return true;
 }
