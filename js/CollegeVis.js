@@ -23,7 +23,7 @@ function CollegeVis(){
 	*/
 	this.Data = {};
 
-
+	this.currentSchool ="";
 }
 
 
