@@ -23,7 +23,7 @@ function CollegeVis(){
 	*/
 	this.Data = {};
 
-	this.currentSchool ="";
+	this.SelectedSchool ="";
 }
 
 
@@ -41,7 +41,7 @@ CollegeVis.prototype.update = function(){
 	
 	// update graphs,etc
 	self.map.updateMap(self.Data["usStateData"], self.Data["stateNames"], fschools);
-
+	self.SelectedList.build(fschools);
 
 
 
@@ -95,14 +95,35 @@ CollegeVis.prototype.filterData = function(){
 	
 	for( var sc in schools)
 	{
+		add = false
+		// sat_avg filter
 		if( (parseInt(schools[sc].SAT_AVG) > self.fData["Sat_Avg"].min) && (parseInt(schools[sc].SAT_AVG) < self.fData["Sat_Avg"].max) )
+			add= true;
+		
+		// selected school filter
+		if( schools[sc].UNITID == self.SelectedSchool)
+		{
+			add = true;
+			schools[sc].selected = true;
+		}	
+		else
+		{
+			schools[sc].selected = false;
+		}
+		
+		
+		
+		
+		// add to list 
+		if(add)
 			fschools.push(schools[sc]);
+		
 	}
 
 	
 	
 	// return filtered schools
-	console.log(fschools);
+	//console.log(fschools);
 	return fschools;
 
 }
@@ -117,5 +138,6 @@ CollegeVis.prototype.createGraphs = function(){
 	var self = this;
 	
 	self.map = new MapVis();
-
+	self.SelectedList = new SchoolsList(self);
+	
 }

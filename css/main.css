@@ -1,75 +1,96 @@
-		body{
-			
-		
-		}
-		
-		
-		#CollegeScoreCardVis{
-			width: 1500px;
-			margin:auto;
-			/*border: 5px groove grey;*/
-			background: #1e1e1e;
-		
-		}
-		
-		
-		#SelectorRow {
-			width:1500px;
+body{
+	
+
+}
 
 
-		
-		}
+#CollegeScoreCardVis{
+	width: 1800px;
+	margin:auto;
+	/*border: 5px groove grey;*/
+	background: #1e1e1e;
 
-		#TitleRow {
-			width:2000px;
-			height: 200px;
-			background: #383838;
+}
+
+
+#SelectorRow {
+	width:1800px;
 
 
 
-		}
-		
-		
-		
-		.filters {
-			width: 200px;
-            height: 500px;
-            float: left;
-			text-align:center;
-			/*border: 1px solid black;*/
-		}
-		.map {
-			width: 800px;
-            height: 500px;
-            float: left;
-			text-align:center;
-			/*border: 1px solid black;*/
-        }
-		.groupSchools {
-			width: 500px;
-            height: 500px;
-            float: right;
-			text-align:center;
-			/*border: 1px solid black;*/
-		}
-		
-		
-		#DisplayRow{
-			width:1500px;
-		
-		}
-		
-		.groupDetails {
-			width: 800px;
-            height: 400px;
-            float: left;
-			text-align:center;
-			/*border: 1px solid black;*/
-		}
-		.selectedSchools {
-			width: 700px;
-            height: 400px;
-            float: right;
-			text-align:center;
-			/*border: 1px solid black;*/
-		}
+}
+
+#TitleRow {
+	width:2000px;
+	height: 200px;
+	background: #383838;
+
+
+
+}
+
+
+
+.filters {
+	width: 200px;
+	height: 500px;
+	float: left;
+	text-align:center;
+	/*border: 1px solid black;*/
+}
+.map {
+	width: 800px;
+	height: 500px;
+	float: left;
+	text-align:center;
+	/*border: 1px solid black;*/
+}
+.groupSchools {
+	width: 500px;
+	height: 500px;
+	float: right;
+	text-align:center;
+	/*border: 1px solid black;*/
+	
+}
+.groupSchools > div {
+	overflow:auto;
+	height: 500px;
+}
+
+#SchoolList {
+	
+	list-style-type:none;
+	
+	
+}
+
+.Selected{
+	border: solid #666 2px;
+	
+	
+}
+
+
+
+
+#DisplayRow{
+	width:1800px;
+
+}
+
+.groupDetails {
+	width: 800px;
+	height: 400px;
+	float: left;
+	text-align:center;
+	/*border: 1px solid black;*/
+}
+.selectedSchool {
+	width: 700px;
+	height: 400px;
+	float: right;
+	text-align:center;
+	/*border: 1px solid black;*/
+	
+}

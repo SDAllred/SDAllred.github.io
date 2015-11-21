@@ -15,11 +15,17 @@ function createFilters(cVis) {
 		values:[0,2400],
 		slide : function(event, ui) {
 	
+			// get values 
 			var val = {};
 			val.min = ui.values[0];
 			val.max = ui.values[1];
+			
+			// update college vis and call update function to update graphs
 			cVis.fData["Sat_Avg"] = val;
 			cVis.update();
+			
+			// update label
+			$("#SatAvgVal").html(ui.values[0] + " - " + ui.values[1]);
 			
 		}
 	});
@@ -27,7 +33,7 @@ function createFilters(cVis) {
 	cVis.fData["Sat_Avg"] ={};
 	cVis.fData["Sat_Avg"].min = 0;
 	cVis.fData["Sat_Avg"].max = 2400;
-
+	$("#SatAvgVal").html("0 - 2400");
 
 }
 

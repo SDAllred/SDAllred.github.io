@@ -29,8 +29,7 @@ var MapVis = function() {
 		.on("click", reset);
 
 	var g = svg.append("g");
-
-
+	
 /*
 	queue()
 		.defer(d3.json, "data/us.json")
@@ -94,9 +93,10 @@ var MapVis = function() {
 		var tryit = names.filter(function(n) { return d.id == n.id; })[0];
 		if (typeof tryit === "undefined"){
 		  d.count = "";//"Unknown";
-		  console.log(d);
+		  //console.log(d);
 		} else {
-		  d.count = tryit.count; 
+		  d.count = tryit.count;
+		  d.selected = tryit.selected;
 		}
 	  });
 
@@ -110,11 +110,11 @@ var MapVis = function() {
 		  .on("click", click)
 		  .style("fill", function(d, i) { return color(d.color = d3.max(neighbors[i], function(n) { return states[n].color; }) + 1 | 0); });
 
-		stateEnter.append("text")
+		var texts = stateEnter.append("text")
 			.attr("class","counts")
 			.attr("x", function(d) {
-				console.log(d);
-				console.log(path.centroid(d));
+				//console.log(d);
+				//console.log(path.centroid(d));
 				if(!isNaN(path.centroid(d)[0]))
 					return path.centroid(d)[0];
 				return 0;	
@@ -149,6 +149,13 @@ var MapVis = function() {
 					return "";
 				return d.count;
 				});
+		
+		
+		state.selectAll("text").filter(function(d){
+			if(d.selected)
+				return true;
+			return false;
+		}).attr("fill","blue");
 		
 		
 		//Show/hide tooltip
@@ -196,7 +203,7 @@ var MapVis = function() {
 
 				
 		pts.attr("cx", function(d,i){
-					console.log(d)
+					//console.log(d)
 					var pro = projection([d.LONGITUDE, d.LATITUDE]);
 					if(pro) // test if location is in the projection.
 						return pro[0];
@@ -212,7 +219,18 @@ var MapVis = function() {
 				})
 				.attr("r", 1)
 				.style("fill", "grey")
-				.attr("opacity", 1);		
+				.attr("opacity", 1);
+
+		// highlight selected school 
+		pts.filter(function(d){
+			if(d.selected)
+				return true;
+			return false;
+		})
+		.style("fill", "blue")	//todo change to proper color?
+		.each(function(){
+			this.parentNode.appendChild(this);
+		})
 	}
 
 
@@ -233,6 +251,10 @@ var MapVis = function() {
 				{
 					counts[st]++;
 					names[st].count++;
+					
+					// if school selected
+					if( schools[sc].selected)
+						names[st].selected = true;
 				}
 			}
 		}
