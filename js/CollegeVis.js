@@ -100,6 +100,14 @@ CollegeVis.prototype.filterData = function(){
 		if( (parseInt(schools[sc].SAT_AVG) > self.fData["Sat_Avg"].min) && (parseInt(schools[sc].SAT_AVG) < self.fData["Sat_Avg"].max) )
 			add= true;
 		
+		// act_avg filter
+		if( (parseInt(schools[sc].ACT_AVG) > self.fData["Act_Avg"].min) && (parseInt(schools[sc].ACT_AVG) < self.fData["Act_Avg"].max) )
+			add= true;
+		
+		// tuition_cost filter
+		//if( (parseInt(schools[sc].TUITION_COST) > self.fData["Tuition_Cosat"].min) && (parseInt(schools[sc].TUITION_COST) < self.fData["Tuition_Cost"].max) )
+			//add= true;
+		
 		// selected school filter
 		if( schools[sc].UNITID == self.SelectedSchool)
 		{
