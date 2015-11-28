@@ -88,17 +88,27 @@ var Graphs = function(cVis) {
         nbar.attr("transform", "translate(0, 0) scale(1, -1)")
             .attr("y", -399)
             .attr("x", function (d) {
-                return 10; //xScale(d.Date)
+                return xScale(d.INSTNM);
             })
             .attr("height", function (d) {
-                return (svgBounds.height - 200 - xAxisSize) - 500 //yScale(d.attendance)
+
+                if (d.COSTT4_A != "NULL") {
+                    return  (svgBounds.height - 200 - xAxisSize) - yScale(d.COSTT4_A)
+                } else {
+
+                    if (d.COSTT4_P != "NULL") {
+                        return (svgBounds.height - 200 - xAxisSize) - yScale(d.COSTT4_P);
+                    } else {
+                        return 0
+                    }
+                }
             })
             .attr("width", function () {
-                return 20 //((svgBounds.width - 140) / selectedSeries.length)
-            });
-        //.style("fill", function (d) {
-        //    return colorScale(d.attendance)
-        //})
+                return ((svgBounds.width - 140) / Gschools.length)
+            })
+        .style("fill", function (d) {
+            return color(d.COSTT4_A);
+        });
 
 
         //bar.selectAll("rect")
