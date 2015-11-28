@@ -35,6 +35,61 @@ function createFilters(cVis) {
 	cVis.fData["Sat_Avg"].max = 2400;
 	$("#SatAvgVal").html("0 - 2400");
 
+	//slider for Act_avg
+	$("#ActAvgSlider").slider({
+		range:true,
+		min:0,
+		max:2400,
+		values:[0,2400],
+		slide : function(event, ui) {
+	
+			// get values 
+			var val = {};
+			val.min = ui.values[0];
+			val.max = ui.values[1];
+			
+			// update college vis and call update function to update graphs
+			cVis.fData["Act_Avg"] = val;
+			cVis.update();
+			
+			// update label
+			$("#ActAvgVal").html(ui.values[0] + " - " + ui.values[1]);
+			
+		}
+	});
+	// setup defalt values in fData
+	cVis.fData["Act_Avg"] ={};
+	cVis.fData["Act_Avg"].min = 0;
+	cVis.fData["Act_Avg"].max = 2400;
+	$("#ActAvgVal").html("0 - 2400");
+	
+	//Slider for tuition cost
+	$("#TuitionCostSlider").slider({
+		range:true,
+		min:0,
+		max:100000,
+		values:[0,100000],
+		slide : function(event, ui) {
+	
+			// get values 
+			var val = {};
+			val.min = ui.values[0];
+			val.max = ui.values[1];
+			
+			// update college vis and call update function to update graphs
+			cVis.fData["Tuition_Cost"] = val;
+			cVis.update();
+			
+			// update label
+			$("#TuitionCostVal").html(ui.values[0] + " - " + ui.values[1]);
+			
+		}
+	});
+	// setup defalt values in fData
+	cVis.fData["Tuition_Cost"] ={};
+	cVis.fData["Tuition_Cost"].min = 0;
+	cVis.fData["Tuition_Cost"].max = 100000;
+	$("#TuitionCostVal").html("0 - 100,000");
 }
 
 
