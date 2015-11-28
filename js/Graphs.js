@@ -65,7 +65,29 @@ var Graphs = function(cVis) {
 
 
         var color = d3.scale.linear();
-        color.domain([0, 20])
+        color.domain([d3.min(Gschools, function (d) {
+                if (d.COSTT4_A != "NULL") {
+                    return d.COSTT4_A
+                } else {
+
+                    if(d.COSTT4_P != "NULL"){
+                        return d.COSTT4_P;
+                    } else {
+                        return 0
+                    }
+                }
+            }), d3.max(Gschools, function (d) {
+                if (d.COSTT4_A != "NULL") {
+                    return d.COSTT4_A
+                } else {
+
+                    if(d.COSTT4_P != "NULL"){
+                        return d.COSTT4_P;
+                    } else {
+                        return 0
+                    }
+                }
+            })])
             .range(["#AF0025", "#FFCC00"]);
 
         //colorScale = d3.scale.linear();
@@ -104,10 +126,23 @@ var Graphs = function(cVis) {
                 }
             })
             .attr("width", function () {
-                return ((svgBounds.width - 140) / Gschools.length)
+                return (( svgBounds.width - 300 - yAxisSize) / Gschools.length)
             })
         .style("fill", function (d) {
-            return color(d.COSTT4_A);
+
+            if (d.COSTT4_A != "NULL") {
+                return color(d.COSTT4_A);
+            } else {
+
+                if (d.COSTT4_P != "NULL") {
+                    return  color(d.COSTT4_P);
+                } else {
+                    return "black";
+                }
+            }
+
+
+
         });
 
 
