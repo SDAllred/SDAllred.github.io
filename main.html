@@ -18,6 +18,7 @@
 	
 	<!-- here are our scripts -->
 	<script src="js/MapScript.js"></script>
+	<script src="js/Graphs.js"></script>
 	<script src="js/SchoolsList.js"></script>
 	<script src="js/CollegeVis.js"></script>
 	<script src="js/filterScript.js"></script>
@@ -63,13 +64,13 @@
 									Small (> 2,000)
 								</label>
 							</div>
-							<div class="Checkbox2"
+							<div class="Checkbox2">
 								<label>
 									<input type="checkbox" rel="Medium" />
 									Medium (2,000 - 15,000)
 								</label>
 							</div>
-							<div class "Checkbox3">
+							<div class="Checkbox3">
 								<label>
 									<input type="checkbox" rel="Large" />
 									Large (< 15,000)
@@ -83,7 +84,7 @@
 									Public
 								</label>
 							</div>
-							<div class="Checkbox2-2"
+							<div class="Checkbox2-2">
 								<label>
 									<input type="checkbox" rel="private" />
 									Private
@@ -115,17 +116,30 @@
 			</tr>
 			<tr>
 				<td>
-					<div id="DisplayRow">
-						<div class="groupDetails">
-									<h1>Group Details</h1>
+					<svg width="1000" height="100" id="buffer"></svg>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div  class="groupDetails">
+							<svg width="700" height="700" id="barChart">
+								<g id="xAxis"></g>
+								<g id="yAxis"></g>
+								<g id="bars"></g>
+							</svg>
 
 
 						</div>
-						
-						<div class="selectedSchool">	
-									<h1>Selected School</h1>   
+				</td>
+			</tr>
+			<tr>
+				<td>
+
+
+						<div class="selectedSchool">
+							<h1>Selected School</h1>
 						</div>
-					</div>
+
 				</td>
 			</tr>
 		</table>

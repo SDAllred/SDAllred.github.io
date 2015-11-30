@@ -42,6 +42,7 @@ CollegeVis.prototype.update = function(){
 	// update graphs,etc
 	self.map.updateMap(self.Data["usStateData"], self.Data["stateNames"], fschools);
 	self.SelectedList.build(fschools);
+	self.graphs.build(fschools);
 
 
 
@@ -147,5 +148,6 @@ CollegeVis.prototype.createGraphs = function(){
 	
 	self.map = new MapVis();
 	self.SelectedList = new SchoolsList(self);
+	self.graphs = new Graphs(self);
 	
 }

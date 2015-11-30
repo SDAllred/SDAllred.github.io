@@ -13,7 +13,7 @@ queue()
 	.await(Main);
 
 
-function Main(error, usStateData, stateNames,schools) {
+function Main(error, usStateData, stateNames, schools) {
 	
 	// create main cVis object
 	var cVis = new CollegeVis();
