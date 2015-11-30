@@ -105,8 +105,8 @@ CollegeVis.prototype.filterData = function(){
 			add= true;
 		
 		// tuition_cost filter
-		//if( (parseInt(schools[sc].TUITION_COST) > self.fData["Tuition_Cosat"].min) && (parseInt(schools[sc].TUITION_COST) < self.fData["Tuition_Cost"].max) )
-			//add= true;
+		if( (parseInt(schools[sc].TUITION_COST) > self.fData["Tuition_Cost"].min) && (parseInt(schools[sc].TUITION_COST) < self.fData["Tuition_Cost"].max) )
+			add= true;
 		
 		// selected school filter
 		if( schools[sc].UNITID == self.SelectedSchool)
