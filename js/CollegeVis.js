@@ -102,11 +102,19 @@ CollegeVis.prototype.filterData = function(){
 			add= true;
 		
 		// act_avg filter
-		if( (parseInt(schools[sc].ACT_AVG) > self.fData["Act_Avg"].min) && (parseInt(schools[sc].ACT_AVG) < self.fData["Act_Avg"].max) )
+		if( (parseInt(schools[sc].ACTCMMID) > self.fData["ACTCMMID"].min) && (parseInt(schools[sc].ACTCMMID) < self.fData["ACTCMMID"].max) )
 			add= true;
 		
-		// tuition_cost filter
-		//if( (parseInt(schools[sc].TUITION_COST) > self.fData["Tuition_Cosat"].min) && (parseInt(schools[sc].TUITION_COST) < self.fData["Tuition_Cost"].max) )
+		// tuitionfee_in filter
+		if( (parseInt(schools[sc].TUITIONFEE_IN) > self.fData["TUITIONFEE_IN"].min) && (parseInt(schools[sc].TUITIONFEE_IN) < self.fData["TUITIONFEE_IN"].max) )
+			add= true;
+		
+		// tuitionfee_out filter
+		if( (parseInt(schools[sc].TUITIONFEE_OUT) > self.fData["TUITIONFEE_OUT"].min) && (parseInt(schools[sc].TUITIONFEE_OUT) < self.fData["TUITIONFEE_OUT"].max) )
+			add= true;
+		
+		//population size filter
+		//if( (parseInt(schools[sc].UGDS) > self.fData["UGDS"].min) && (parseInt(schools[sc].UGDS) < self.fData["UGDS"].max) )
 			//add= true;
 		
 		// selected school filter
