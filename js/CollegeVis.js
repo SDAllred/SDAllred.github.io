@@ -36,19 +36,28 @@ CollegeVis.prototype.update = function(){
 	
 	
 	// updated filtered school list 
-	var fschools = self.filterData();
+	self.fschools = self.filterData();
 	
 	
 	// update graphs,etc
 	self.map.updateMap(self.Data["usStateData"], self.Data["stateNames"], fschools);
-	self.SelectedList.build(fschools);
-	self.graphs.build(fschools);
+	self.SelectedList.build(self.fschools);
+	self.updateGraphs(self.fschools);
 
 
 
 
 }
 
+
+
+CollegeVis.prototype.updateGraphs = function(schools){
+	var self = this;
+	
+	self.graphs.build(schools);
+	
+	
+}
 
 
 /*

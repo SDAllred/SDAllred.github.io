@@ -202,6 +202,7 @@ var SchoolsList = function(cVis) {
 			$("#SchoolList li").removeClass("Selected");
 			$(this).addClass("Selected");
 			
+			//update map and graphs 
 			cVis.update();
 			
 		});	
@@ -255,6 +256,9 @@ var SchoolsList = function(cVis) {
 			grid.setData(sData);
 			grid.setSelectedRows(selectedRows);
 			grid.render();
+			
+			// update the graphs with the new list
+			cVis.updateGraphs(sData);
 		  });
 		  grid.registerPlugin(moveRowsPlugin);
 		  /*
@@ -370,6 +374,9 @@ var SchoolsList = function(cVis) {
 			  });
 			  grid.invalidate();
 			  grid.render();
+			  
+				// update the graphs with the new list
+				cVis.updateGraphs(sData);
 			});
 		
 		
@@ -402,7 +409,8 @@ var SchoolsList = function(cVis) {
 			grid.setSelectedRows(selectedRows);
 			grid.render();
 			
-			
+			// update the graphs with the new list
+			cVis.updateGraphs(sData);
 		
 		});
 		
@@ -448,6 +456,12 @@ var SchoolsList = function(cVis) {
 		return data;
 	}
 	
+	
+	this.updateData = function(newData){
+		
+		this.cVis.fschools = newData;
+		
+	}
 	
 }
 
