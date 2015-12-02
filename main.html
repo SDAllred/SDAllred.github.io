@@ -58,12 +58,16 @@
 								<div id="SatAvgSlider"></div>
 							</p>
 							<p>
-								<label for="amount">Avg Act Admitted:</label><span id="ActAvgVal" ></span>
-								<div id="ActAvgSlider"></div>
+								<label for="amount">Median of Act Admitted:</label><span id="ActMedianVal" ></span>
+								<div id="ActMedianSlider"></div>
 							</p>
 							<p>
-								<label for="amount">Tuition Cost:</label><span id="TuitionCostVal" ></span>
-								<div id="TuitionCostSlider"></div>
+								<label for="amount">Tuition Cost In-State:</label><span id="TuitionCostInVal" ></span>
+								<div id="TuitionCostInSlider"></div>
+							</p>
+							<p>
+								<label for="amount">Tuition Cost Out-of-State:</label><span id="TuitionCostOutVal" ></span>
+								<div id="TuitionCostOutSlider"></div>
 							</p>
 							Size of Student Population
 							<div class="Checkbox1">
@@ -130,14 +134,27 @@
 			<tr>
 				<td>
 					<div  class="groupDetails">
-							<svg width="700" height="700" id="barChart">
-								<g id="xAxis"></g>
-								<g id="yAxis"></g>
-								<g id="bars"></g>
-							</svg>
+
+						<svg width="700" height="700" id="costChart">
+							<g id="xAxis"></g>
+							<g id="yAxis"></g>
+							<g id="bars"></g>
+						</svg>
+
+						<svg width="700" height="700" id="debtChart">
+							<g id="xAxis2"></g>
+							<g id="yAxis2"></g>
+							<g id="bars2"></g>
+						</svg>
+
+						<svg width="700" height="700" id="admitChart">
+							<g id="xAxis3"></g>
+							<g id="yAxis3"></g>
+							<g id="bars3"></g>
+						</svg>
 
 
-						</div>
+					</div>
 				</td>
 			</tr>
 			<tr>
