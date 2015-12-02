@@ -372,6 +372,40 @@ var SchoolsList = function(cVis) {
 			  grid.render();
 			});
 		
+		
+		$("#SSTopButton").click(function(){
+			
+			var extractedRows = [], left, right;
+			var rows = grid.getSelectedRows();
+			var insertBefore = 0;
+			left = sData.slice(0, insertBefore);
+			right = sData.slice(insertBefore, sData.length);
+			rows.sort(function(a,b) { return a-b; });
+			for (var i = 0; i < rows.length; i++) {
+			  extractedRows.push(sData[rows[i]]);
+			}
+			rows.reverse();
+			for (var i = 0; i < rows.length; i++) {
+			  var row = rows[i];
+			  if (row < insertBefore) {
+				left.splice(row, 1);
+			  } else {
+				right.splice(row - insertBefore, 1);
+			  }
+			}
+			sData = left.concat(extractedRows.concat(right));
+			var selectedRows = [];
+			for (var i = 0; i < rows.length; i++)
+			  selectedRows.push(left.length + i);
+			grid.resetActiveCell();
+			grid.setData(sData);
+			grid.setSelectedRows(selectedRows);
+			grid.render();
+			
+			
+		
+		});
+		
 	}
 
 	
