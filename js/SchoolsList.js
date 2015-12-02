@@ -14,9 +14,9 @@ function waitingFormatter(value) {
 
 function renderSparkline(cellNode, row, dataContext, colDef) {
 	var vals = [
-	  dataContext.UGDS,
-	  dataContext.TUITIONFEE_IN,
-	  dataContext.TUITIONFEE_OUT,
+	  dataContext.UGDSsc,
+	  dataContext.TUITIONFEE_INsc,
+	  dataContext.TUITIONFEE_OUTsc,
 	];
 
 	$(cellNode).empty().sparkline(vals, {
@@ -147,15 +147,25 @@ var SchoolsList = function(cVis) {
 		
 		var grid;
 		var columns = [
-			{id: "title", name: "Title", field: "INSTNM", sortable: false, width: 408},
-			{id: "chart", name: "Chart", sortable: false, width:70, formatter: waitingFormatter, rerenderOnResize: true, asyncPostRender: renderSparkline}
+			{id: "chart", name: "Chart", width:70, formatter: waitingFormatter, rerenderOnResize: true, asyncPostRender: renderSparkline},
+			{id: "title", name: "Title", field: "INSTNM", width: 408 , behavior: "selectAndMove", resizable: false, cssClass: "cell-reorder dnd"},
+			{id: "UGDS", name: "Population", field: "UGDS", width: 70 ,sortable: true},
+			{id: "TuIn", name: "Tuition In", field: "TUITIONFEE_IN", width: 70 ,sortable: true},
+			{id: "TuOut", name: "Tuition Out", field: "TUITIONFEE_OUT", width: 70 ,sortable: true},
+			
+			
 		];
 
 		var options = {
 			editable: true,
-			enableAddRow: false,
+			enableAddRow: true,
+			enableCellNavigation: true,
 			asyncEditorLoading: false,
-			enableAsyncPostRender: true
+			enableAsyncPostRender: true,
+			forceFitColumns:true,
+			autoEdit: false,
+			enableColumnReorder: false,
+			multiColumnSort: true
 		};
 		
 		
@@ -169,7 +179,7 @@ var SchoolsList = function(cVis) {
 		
 		grid = new Slick.Grid("#SchoolList", sData, columns, options);
 		
-		
+		// handle the school selection
 		grid.onDblClick.subscribe(function(e, args){
 			
 			var cell = grid.getCellFromEvent(e);
@@ -196,6 +206,172 @@ var SchoolsList = function(cVis) {
 			
 		});	
 		
+		
+		
+		
+		
+		// handle the drag and drop 
+		grid.setSelectionModel(new Slick.RowSelectionModel());
+		
+		  var moveRowsPlugin = new Slick.RowMoveManager({
+			cancelEditOnDrag: true
+		  });
+		  
+		  moveRowsPlugin.onBeforeMoveRows.subscribe(function (e, data) {
+			for (var i = 0; i < data.rows.length; i++) {
+			  // no point in moving before or after itself
+			  if (data.rows[i] == data.insertBefore || data.rows[i] == data.insertBefore - 1) {
+				e.stopPropagation();
+				return false;
+			  }
+			}
+			return true;
+		  });
+		  
+		  moveRowsPlugin.onMoveRows.subscribe(function (e, args) {
+			var extractedRows = [], left, right;
+			var rows = args.rows;
+			var insertBefore = args.insertBefore;
+			left = sData.slice(0, insertBefore);
+			right = sData.slice(insertBefore, sData.length);
+			rows.sort(function(a,b) { return a-b; });
+			for (var i = 0; i < rows.length; i++) {
+			  extractedRows.push(sData[rows[i]]);
+			}
+			rows.reverse();
+			for (var i = 0; i < rows.length; i++) {
+			  var row = rows[i];
+			  if (row < insertBefore) {
+				left.splice(row, 1);
+			  } else {
+				right.splice(row - insertBefore, 1);
+			  }
+			}
+			sData = left.concat(extractedRows.concat(right));
+			var selectedRows = [];
+			for (var i = 0; i < rows.length; i++)
+			  selectedRows.push(left.length + i);
+			grid.resetActiveCell();
+			grid.setData(sData);
+			grid.setSelectedRows(selectedRows);
+			grid.render();
+		  });
+		  grid.registerPlugin(moveRowsPlugin);
+		  /*
+		  grid.onDragInit.subscribe(function (e, dd) {
+			// prevent the grid from cancelling drag'n'drop by default
+			e.stopImmediatePropagation();
+		  });
+		  grid.onDragStart.subscribe(function (e, dd) {
+			var cell = grid.getCellFromEvent(e);
+			if (!cell) {
+			  return;
+			}
+			dd.row = cell.row;
+			if (!data[dd.row]) {
+			  return;
+			}
+			if (Slick.GlobalEditorLock.isActive()) {
+			  return;
+			}
+			e.stopImmediatePropagation();
+			dd.mode = "recycle";
+			var selectedRows = grid.getSelectedRows();
+			if (!selectedRows.length || $.inArray(dd.row, selectedRows) == -1) {
+			  selectedRows = [dd.row];
+			  grid.setSelectedRows(selectedRows);
+			}
+			dd.rows = selectedRows;
+			dd.count = selectedRows.length;
+			var proxy = $("<span></span>")
+				.css({
+				  position: "absolute",
+				  display: "inline-block",
+				  padding: "4px 10px",
+				  background: "#e0e0e0",
+				  border: "1px solid gray",
+				  "z-index": 99999,
+				  "-moz-border-radius": "8px",
+				  "-moz-box-shadow": "2px 2px 6px silver"
+				})
+				.text("Drag to Recycle Bin to delete " + dd.count + " selected row(s)")
+				.appendTo("body");
+			dd.helper = proxy;
+			$(dd.available).css("background", "pink");
+			return proxy;
+		  });
+		  grid.onDrag.subscribe(function (e, dd) {
+			if (dd.mode != "recycle") {
+			  return;
+			}
+			dd.helper.css({top: e.pageY + 5, left: e.pageX + 5});
+		  });
+		  grid.onDragEnd.subscribe(function (e, dd) {
+			if (dd.mode != "recycle") {
+			  return;
+			}
+			dd.helper.remove();
+			$(dd.available).css("background", "beige");
+		  });
+		  $.drop({mode: "mouse"});*/
+		 /* $("#dropzone")
+			  .bind("dropstart", function (e, dd) {
+				if (dd.mode != "recycle") {
+				  return;
+				}
+				$(this).css("background", "yellow");
+			  })
+			  .bind("dropend", function (e, dd) {
+				if (dd.mode != "recycle") {
+				  return;
+				}
+				$(dd.available).css("background", "pink");
+			  })
+			  .bind("drop", function (e, dd) {
+				if (dd.mode != "recycle") {
+				  return;
+				}
+				var rowsToDelete = dd.rows.sort().reverse();
+				for (var i = 0; i < rowsToDelete.length; i++) {
+				  data.splice(rowsToDelete[i], 1);
+				}
+				grid.invalidate();
+				grid.setSelectedRows([]);
+			  });
+			  */
+		  grid.onAddNewRow.subscribe(function (e, args) {
+			var item = {name: "New task", complete: false};
+			$.extend(item, args.item);
+			data.push(item);
+			grid.invalidateRows([data.length - 1]);
+			grid.updateRowCount();
+			grid.render();
+		  });
+			
+		
+		
+		
+		
+		
+		// sorting the list 
+		grid.onSort.subscribe(function (e, args) {
+			  var cols = args.sortCols;
+			  sData.sort(function (dataRow1, dataRow2) {
+				for (var i = 0, l = cols.length; i < l; i++) {
+				  var field = cols[i].sortCol.field;
+				  var sign = cols[i].sortAsc ? 1 : -1;
+				  var value1 = dataRow1[field], value2 = dataRow2[field];
+				  var result = (value1 == value2 ? 0 : (value1 > value2 ? 1 : -1)) * sign;
+				  if (result != 0) {
+					return result;
+				  }
+				}
+				return 0;
+			  });
+			  grid.invalidate();
+			  grid.render();
+			});
+		
 	}
 
 	
@@ -216,21 +392,21 @@ var SchoolsList = function(cVis) {
 			
 			// scale data 
 			if( schools[sc].UGDS != "NULL")
-				data[sc].UGDS = (parseFloat(schools[sc].UGDS) / UGDSmax).toFixed(2) 
+				data[sc].UGDSsc = (parseFloat(schools[sc].UGDS) / UGDSmax).toFixed(2) 
 			else
-				data[sc].UGDS = 0;
+				data[sc].UGDSsc = 0;
 			
 			
 			if( schools[sc].TUITIONFEE_IN != "NULL")
-				data[sc].TUITIONFEE_IN = (parseFloat(schools[sc].TUITIONFEE_IN) / TuitionIn).toFixed(2)
+				data[sc].TUITIONFEE_INsc = (parseFloat(schools[sc].TUITIONFEE_IN) / TuitionIn).toFixed(2)
 			else
-				data[sc].TUITIONFEE_IN = 0
+				data[sc].TUITIONFEE_INsc = 0
 			
 			
 			if( schools[sc].TUITIONFEE_OUT != "NULL")
-				data[sc].TUITIONFEE_OUT =  (parseFloat(schools[sc].TUITIONFEE_OUT) / TuitionOut).toFixed(2) 
+				data[sc].TUITIONFEE_OUTsc =  (parseFloat(schools[sc].TUITIONFEE_OUT) / TuitionOut).toFixed(2) 
 			else
-				data[sc].TUITIONFEE_OUT = 0
+				data[sc].TUITIONFEE_OUTsc = 0
 			
 			
 		}
