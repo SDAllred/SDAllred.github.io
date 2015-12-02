@@ -45,6 +45,10 @@ body{
 	text-align:center;
 	/*border: 1px solid black;*/
 }
+
+
+/* styles for the schools list */
+
 .groupSchools {
 	width: 500px;
 	height: 500px;
@@ -53,21 +57,31 @@ body{
 	/*border: 1px solid black;*/
 	
 }
+/*
 .groupSchools > div {
 	overflow:auto;
 	height: 500px;
 }
-
+*/
 #SchoolList {
 	
 	list-style-type:none;
+	/*overflow:auto;*/
+	height: 500px;
+	width: 500px;
 	
-	
+	background: #898383;
+	color: #2B2A2A;
 }
 
-.Selected{
-	border: solid #666 2px;
+#SchoolList .ui-widget-content {
+	background: none;
+}
+
+#SchoolList .Selected{
+	/*border: solid #666 2px;*/
 	
+	background-color: #FFCC00;
 	
 }
 

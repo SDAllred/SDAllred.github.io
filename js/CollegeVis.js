@@ -110,15 +110,12 @@ CollegeVis.prototype.filterData = function(){
 			add= true;
 		
 		// selected school filter
+		schools[sc].selected = false;
 		if( schools[sc].UNITID == self.SelectedSchool)
 		{
 			add = true;
 			schools[sc].selected = true;
 		}	
-		else
-		{
-			schools[sc].selected = false;
-		}
 		
 		
 		

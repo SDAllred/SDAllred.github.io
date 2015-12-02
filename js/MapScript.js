@@ -94,6 +94,7 @@ var MapVis = function() {
 		if (typeof tryit === "undefined"){
 		  d.count = "";//"Unknown";
 		  //console.log(d);
+		  d.selected = false;
 		} else {
 		  d.count = tryit.count;
 		  d.selected = tryit.selected;
@@ -131,7 +132,7 @@ var MapVis = function() {
 				return d.count;
 				})
 			.attr("text-anchor","middle")
-			.attr('fill', '#f9f9f9');
+			.attr('fill', '#C3C2C2');
 
 		
 		state.exit()
@@ -155,9 +156,13 @@ var MapVis = function() {
 			if(d.selected)
 				return true;
 			return false;
-		}).attr("fill","blue");
+		}).attr("fill","#2B2A2A");
 		
-		
+		state.selectAll("text").filter(function(d){
+			if(!d.selected)
+				return true;
+			return false;
+		}).attr("fill","#C3C2C2");
 		//Show/hide tooltip
 		/*
 		country
@@ -218,7 +223,7 @@ var MapVis = function() {
 					//return projection([d.longitude, d.latitude])[1]
 				})
 				.attr("r", 1)
-				.style("fill", "grey")
+				.style("fill", "#2B2A2A")
 				.attr("opacity", 1);
 
 		// highlight selected school 
@@ -227,7 +232,7 @@ var MapVis = function() {
 				return true;
 			return false;
 		})
-		.style("fill", "blue")	//todo change to proper color?
+		.style("fill", "#C3C2C2")	//todo change to proper color?
 		.each(function(){
 			this.parentNode.appendChild(this);
 		})
@@ -245,6 +250,7 @@ var MapVis = function() {
 		{
 			counts[st] = 0;
 			names[st].count = 0;
+			names[st].selected = false;
 			for( sc in schools)
 			{
 				if(schools[sc].STABBR == names[st].code)
