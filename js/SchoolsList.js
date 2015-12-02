@@ -22,10 +22,11 @@ function renderSparkline(cellNode, row, dataContext, colDef) {
 	$(cellNode).empty().sparkline(vals, {
 				type: 'bar',
 				width: '100%',
+				barWidth: '12px',
 				barColor: "#AF0025",
 				chartRangeMin: 0,
 				chartRangeMax: 1,
-				tooltipFormat: '{{offset:offset}} {{value}}',
+				tooltipFormat: '{{offset:offset}} {{value}}% of max',
 				tooltipValueLookups: {
 					'offset': {
 						0: 'Population',
@@ -140,10 +141,9 @@ var SchoolsList = function(cVis) {
 		});
 		*/
 		
+		$("#gsTitle").html(schools.length + " Schools Selected");
 		
 		sData = this.scaleData(schools);
-		
-		
 		
 		var grid;
 		var columns = [
