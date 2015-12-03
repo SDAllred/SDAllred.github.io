@@ -44,6 +44,7 @@
 	<!-- style sheets for css -->
 	<link rel="stylesheet" href="css/main.css">
 	<link rel="stylesheet" href="css/MapStyles.css">
+	
 </head>
 <body>
 	<div id="CollegeScoreCardVis">
@@ -77,27 +78,38 @@
 								<div id="TuitionCostOutSlider"></div>
 							</p>
 							Size of Student Population
-							<div class="Checkbox1">
+							<form id="studentPop">
+								<input type="checkbox" id="small" value="small"  checked/>Small (> 2,000)<br>
+								<input type="checkbox" id="medium" value="Medium" checked/>Medium (2,000 - 15,000)<br>
+								<input type="checkbox" id="large" value="Large" checked/>Large (< 15,000)<br>
+							</form>
+								<br/><br/>
+							Type of School
+							<form id="schoolType">
+								<input type="checkbox" id="public" value="public"  checked/>Public<br>
+								<input type="checkbox" id="private" value="private" checked/>Private<br>
+								<input type="checkbox" id="privateFP" value="privateFP" checked/>Private For-Profit<br>
+							</form>
+							<!--<div class="Checkbox1">
 								 <label>
-									<input type="checkbox" rel="small" />
+									<input type="checkbox" rel="small"  checked/>
 									Small (> 2,000)
 								</label>
 							</div>
 							<div class="Checkbox2">
 								<label>
-									<input type="checkbox" rel="Medium" />
+									<input type="checkbox" rel="Medium" checked/>
 									Medium (2,000 - 15,000)
 								</label>
 							</div>
 							<div class="Checkbox3">
 								<label>
-									<input type="checkbox" rel="Large" />
+									<input type="checkbox" rel="Large" checked/>
 									Large (< 15,000)
 								</label>
-							</div>
-							<br/><br/>
-							Type of School
-							<div class="Checkbox1-2">
+							</div>-->
+						
+							<!--<div class="Checkbox1-2">
 								 <label>
 									<input type="checkbox" rel="public" />
 									Public
@@ -114,7 +126,7 @@
 									<input type="checkbox" rel="private forProfit" />
 									Private For-Profit
 								</label>
-							</div>
+							</div>-->
 						</div>
 
 						<div class="map" id="map">

@@ -119,60 +119,128 @@ function createFilters(cVis) {
 	cVis.fData["TUITIONFEE_OUT"].max = 55000;
 	$("#TuitionCostOutVal").html("0 - 55,000");
 	
+	
 	//Cheklist for population size
-	/* var val ={};
-	
-	if($("#Checkbox1").is(":checked"))
-	{
-		if($("#Checkbox2").is(":checked"))
+	$("#studentPop :checkbox").change(function(){
+		
+		var val ={min1:0, min2:0, max1:50000, max2:50000};
+		if($("#small").is(":checked"))
 		{
-			val.min = 0;
-			val.max = 15000;
-			
-			//if($("#Checkbox3").is(":checked"))
-			//{
-				//val.min = 0;
-				//val.max = 50000;
-			//}
+			if($("#medium").is(":checked"))
+			{
+				val.min1 = 0;
+				val.min2 = 0;
+				val.max1 = 15000;
+				val.max2 = 15000;
+				
+				if($("#large").is(":checked"))
+				{
+					val.min1 = 0;
+					val.min2 = 0;
+				    val.max1 = 50000
+					val.max2 = 50000;
+				}
+			}
+			else if($("#large").is(":checked"))
+			{
+				val.min1 = 0;
+				val.min2 = 15001;
+				val.max1 = 1999;
+				val.max2 = 50000;
+			}
+			else
+			{
+				val.min1 = 0;
+				val.min2 = 0;
+				val.max1 = 1999;
+				val.max2 = 1999;
+			}
 		}
-		if else($("#Checkbox3").is(":checked"))
+		
+		else if($("#medium").is(":checked"))
 		{
-			val.min = 0;
-			val.max = 50000;
+			if($("#large").is(":checked"))
+			{
+				val.min1 = 2000;
+				val.min2 = 2000;
+				val.max1 = 50000;
+				val.max2 = 50000;
+			}
+			else
+			{
+				val.min1 = 2000;
+				val.min2 = 2000;
+				val.max1 = 15000;
+				val.max2 = 15000;
+			}
 		}
+		
 		else
 		{
-			val.min = 0;
-			val.max = 1999;
+			val.min1 = 15001;
+			val.min2 = 15001;
+			val.max1 = 50000;
+			val.max2 = 50000;
 		}
-	}
-	
-	if($("#Checkbox2").is(":checked"))
-	{
-		if($("#Checkbox3").is(":checked"))
-		{
-			val.min = 2000;
-			val.max = 50000;
-		}
-		else
-		{
-			val.min = 2000;
-			val.max = 15000;
-		}
-	}
-	
-	if($("#Checkbox3").is(":checked"))
-	{
-		val.min = 15001;
-		val.max = 50000;
-	}
-	
-	cVis.fData["UGDS"] = val;
-	cVis.update();
+		
+		cVis.fData["UGDS"] = val;
+		cVis.update();
+		
+	});
 	
 	cVis.fData["UGDS"] ={};
-	cVis.fData["UGDS"].min = 0;
-	cVis.fData["UGDS"].max = 50000; */
+	cVis.fData["UGDS"].min1 = 0;
+	cVis.fData["UGDS"].min2 = 0;
+	cVis.fData["UGDS"].max1 = 50000; 
+	cVis.fData["UGDS"].max2 = 50000;
+	
+	
+	//Cheklist for type of school
+	$("#schoolType :checkbox").change(function(){
+		var val = {};
+		
+		if($("#public").is(":checked"))
+		{
+			val.min = 1;
+			val.max = 1;
+			
+			if($("#private").is(":checked"))
+			{
+				val.min = 1;
+				val.max = 2;
+				
+				if($("#privateFP").is(":checked"))
+				{
+					val.min = 1;
+					val.max = 3;
+				}
+			}
+		}
+		else if($("#private").is(":checked"))
+		{
+			val.min = 2;
+			val.max = 2;
+			
+			if($("#privateFP").is(":checked"))
+			{
+				val.min = 2;
+				val.max = 3;
+			}
+		}
+		else
+		{
+			val.min = 3;
+			val.max = 3;
+		}
+		
+		
+		cVis.fData["CONTROL"] = val;
+		cVis.update();
+	});
+	
+	cVis.fData["CONTROL"] ={};
+	cVis.fData["CONTROL"].min = 1;
+	cVis.fData["CONTROL"].max = 3;
 }
 
 

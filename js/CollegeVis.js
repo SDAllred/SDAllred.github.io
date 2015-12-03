@@ -122,10 +122,21 @@ CollegeVis.prototype.filterData = function(){
 		if( (parseInt(schools[sc].TUITIONFEE_OUT) > self.fData["TUITIONFEE_OUT"].min) && (parseInt(schools[sc].TUITIONFEE_OUT) < self.fData["TUITIONFEE_OUT"].max) )
 			add= true;
 		
-		//population size filter
-		//if( (parseInt(schools[sc].UGDS) > self.fData["UGDS"].min) && (parseInt(schools[sc].UGDS) < self.fData["UGDS"].max) )
-			//add= true;
+		// population size filter
+		if(self.fData["UGDS"].min1 == self.fData["UGDS"].min2 && self.fData["UGDS"].max1 == self.fData["UGDS"].max2)
+		{
+			if( (parseInt(schools[sc].UGDS) >= self.fData["UGDS"].min1) && (parseInt(schools[sc].UGDS) <= self.fData["UGDS"].max1) )
+				add= true;
+		}
+		else
+		{
+			if( ((parseInt(schools[sc].UGDS) >= self.fData["UGDS"].min1) && (parseInt(schools[sc].UGDS) <= self.fData["UGDS"].max1)) && ((parseInt(schools[sc].UGDS) >= self.fData["UGDS"].min2) && (parseInt(schools[sc].UGDS) <= self.fData["UGDS"].max2)))
+				add= true;
+		}
 		
+		// type of school  filter
+		if( (parseInt(schools[sc].CONTOL) >= self.fData["CONTROL"].min) && (parseInt(schools[sc].CONTROL) <= self.fData["CONTROL"].max) )
+			add= true;
 		// selected school filter
 		schools[sc].selected = false;
 		if( schools[sc].UNITID == self.SelectedSchool)
