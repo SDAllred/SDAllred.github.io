@@ -9,12 +9,16 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
 	<script src="http://d3js.org/queue.v1.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/1.6.19/topojson.min.js"></script>
+	<script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
+	
 	
 	<!--  These links adde for the widgit controls.  -->
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 	<script type="text/javascript" src="http://rawgit.com/jquery/jquery-mousewheel/master/jquery.mousewheel.min.js"></script>
 	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 	<link rel="stylesheet" href="js/SlickGrid/slick.grid.css" type="text/css">
+	
+	
 	
 	<!-- new stuff for list table -->
 	<script src="js/SlickGrid/lib/jquery.event.drag-2.2.js"></script>
@@ -137,7 +141,6 @@
 
 						<div class="groupSchools">
 							<h1 id="gsTitle">Schools</h1>
-							<h3> First 10 schools graphed</h3>
 							<button id="SSTopButton">Move to Top</button>
 							<div class= "ovScroll">
 								<div id="SchoolList" >
@@ -149,31 +152,23 @@
 			</tr>
 			<tr>
 				<td>
-					<svg width="1000" height="100" id="buffer"></svg>
-				</td>
-			</tr>
-			<tr>
-				<td>
 					<div  class="groupDetails">
 
-						<svg width="700" height="700" id="costChart">
+						<select id="GroupValue">
+							<option value="GRAD_DEBT_MDN_SUPP" selected="true">Average Debt</option>
+							<option value="COSTT4_A">Cost</option>
+							<option value="ADM_RATE">Admin Rate</option>
+						</select>
+						<span>
+							for first
+							<input id="GroupSize" type="text" value="150"></input>
+							schools displayed
+						</span>
+						<svg width="1700" height="300" id="GroupChart">
 							<g id="xAxis"></g>
 							<g id="yAxis"></g>
 							<g id="bars"></g>
 						</svg>
-
-						<svg width="700" height="700" id="debtChart">
-							<g id="xAxis2"></g>
-							<g id="yAxis2"></g>
-							<g id="bars2"></g>
-						</svg>
-
-						<svg width="700" height="700" id="admitChart">
-							<g id="xAxis3"></g>
-							<g id="yAxis3"></g>
-							<g id="bars3"></g>
-						</svg>
-
 
 					</div>
 				</td>

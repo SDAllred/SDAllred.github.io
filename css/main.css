@@ -15,7 +15,8 @@ body{
 
 #SelectorRow {
 	width:1800px;
-
+	height:600px;
+	margin-bottom:100px;
 
 
 }
@@ -33,7 +34,7 @@ body{
 
 .filters {
 	width: 200px;
-	height: 500px;
+	height: 600px;
 	float: left;
 	text-align:center;
 	/*border: 1px solid black;*/
@@ -55,7 +56,6 @@ body{
 	float: right;
 	text-align:center;
 	/*border: 1px solid black;*/
-	
 }
 /*
 .groupSchools > div {
@@ -109,16 +109,67 @@ body{
 }
 
 .groupDetails {
-	width: 800px;
-	height: 400px;
-	float: left;
+	width: 1800px;
+	height: 350px;
+	/*float: left;*/
 	text-align:center;
+	font-size:18px;
 	/*border: 1px solid black;*/
 }
+
+
+input#GroupSize{
+	width:40px;
+	text-align:center;
+}
+/*  tootlips in graphs */
+.axis{
+	fill:none;
+	stroke:grey;
+	stroke-width: 1;
+	font-size: 12px;
+}
+
+
+.bar:hover {
+  fill: orangered ;
+}
+.d3-tip {
+  line-height: 1;
+  font-weight: bold;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  border-radius: 2px;
+}
+
+/* Creates a small triangle extender for the tooltip */
+.d3-tip:after {
+  box-sizing: border-box;
+  display: inline;
+  font-size: 10px;
+  width: 100%;
+  line-height: 1;
+  color: rgba(0, 0, 0, 0.8);
+  content: "\25BC";
+  position: absolute;
+  text-align: center;
+}
+
+/* Style northward tooltips differently */
+.d3-tip.n:after {
+  margin: -1px 0 0 0;
+  top: 100%;
+  left: 0;
+}
+
+
+
+/*  css for the selected school table */
 .selectedSchool {
-	width: 700px;
+	width: 1800px;
 	height: 400px;
-	float: right;
+	/*float: right;*/
 	text-align:center;
 	/*border: 1px solid black;*/
 	
