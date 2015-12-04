@@ -2,8 +2,8 @@
 var MapVis = function() {
 
 
-	var width  = 800,
-		height = 500,
+	var width  = 1000,
+		height = 600,
 		active;
 
 	//var color = d3.scale.category20c();
@@ -13,8 +13,8 @@ var MapVis = function() {
 			.range(["#AF0025", "#FFCC00"]);
 
 	var projection = d3.geo.albersUsa()
-					.translate([400, 250])
-					.scale(970);
+					.translate([450, 300])
+					.scale(1200);
 
 	var path = d3.geo.path()
 		.projection(projection);
