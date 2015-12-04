@@ -22,7 +22,8 @@ function CollegeVis(){
 		cVis.fData["us.json"] = usStateData;
 	*/
 	this.Data = {};
-
+	this.fschools = [];
+	
 	this.SelectedSchool ="";
 }
 
@@ -53,10 +54,13 @@ CollegeVis.prototype.update = function(){
 
 
 
+
 CollegeVis.prototype.updateGraphs = function(schools){
 	var self = this;
-	
-	self.graphs.build(schools);
+	if( schools == null)
+		self.graphs.build(self.fschools);
+	else
+		self.graphs.build(schools);
 	
 	
 }
@@ -88,6 +92,11 @@ CollegeVis.prototype.loadData = function(){
 	return true;
 }
 
+
+CollegeVis.prototype.updatefSchools = function(nfschools){
+	var self = this;
+	self.fschools = nfschools;
+}
 
 
 /*

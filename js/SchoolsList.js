@@ -262,6 +262,7 @@ var SchoolsList = function(cVis) {
 			grid.render();
 			
 			// update the graphs with the new list
+			console.log(sData);
 			cVis.fSchools = sData;
 			cVis.updateGraphs(sData);
 		  });
@@ -395,8 +396,8 @@ var SchoolsList = function(cVis) {
 			
 			 sData.sort(function (dataRow1, dataRow2) {
 				
-				
-				if(( dataRow1[field] != "NULL") && ( dataRow1[field] != "n/a"))
+				var value1 = 0;
+				if(( dataRow1[field] != "NULL") && ( dataRow1[field] != "n/a") && (dataRow1[field] !="PrivacySuppressed"))
 				{
 					if(field != "INSTNM")
 						value1 = parseFloat(dataRow1[field]);
@@ -404,10 +405,10 @@ var SchoolsList = function(cVis) {
 						value1 = dataRow1[field];
 				}
 				else
-					var value1 = (asc=="true") ? 2000000 : 0;
+					value1 = (asc=="true") ?  20000000 : 0;
 				
-				
-				if(( dataRow2[field] != "NULL") && ( dataRow2[field] != "n/a"))
+				var value2 = 0;
+				if(( dataRow2[field] != "NULL") && ( dataRow2[field] != "n/a")  && (dataRow2[field] !="PrivacySuppressed"))
 				{
 					if(field != "INSTNM")
 						value2= parseFloat(dataRow2[field]);
@@ -415,7 +416,7 @@ var SchoolsList = function(cVis) {
 						value2 = dataRow2[field];
 				}
 				else
-					var value2 = (asc=="true") ? 2000000 : 0;
+					value2 = (asc=="true") ?  20000000 : 0;
 				
 				
 				var result = (value1 == value2 ? 0 : (value1 > value2 ? 1 : -1)) * sign;
@@ -428,13 +429,14 @@ var SchoolsList = function(cVis) {
 			grid.render();
 			  
 			// update the graphs with the new list
-			cVis.fSchools = sData;
+			console.log(sData);
+			cVis.updatefSchools(sData);
 			cVis.updateGraphs(sData);
 			
 		}
 		
 		
-		$(".SortButton").click(function(e){
+		$(".SortButton").unbind('click').bind('click',function(e){
 			var asc = $(this).attr("asc");
 			
 			$(this).attr("asc", ((asc=="true")?'false':'true'));
@@ -443,7 +445,7 @@ var SchoolsList = function(cVis) {
 		});
 		
 		
-		$("#SSTopButton").click(function(){
+		$("#SSTopButton").unbind('click').bind('click',function(){
 			
 			var extractedRows = [], left, right;
 			var rows = grid.getSelectedRows();
@@ -480,7 +482,7 @@ var SchoolsList = function(cVis) {
 		
 		
 		
-		$("#SSRemoveButton").click(function(){
+		$("#SSRemoveButton").unbind('click').bind('click',function(){
 			
 			var extractedRows = [], left, right;
 			var rows = grid.getSelectedRows();
@@ -535,7 +537,7 @@ var SchoolsList = function(cVis) {
 			data[0].GRAD_DEBT_MDN_SUPPsc= 0;
 			data[0].COSTT4_Asc= 0;
 			data[0].ADM_RATEsc= 0;
-			data[0].md_earn_wne_p10scContext= 0;
+			data[0].md_earn_wne_p10sc= 0;
 			
 			return data;
 		}
