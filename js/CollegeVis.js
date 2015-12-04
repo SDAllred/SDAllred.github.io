@@ -107,25 +107,25 @@ CollegeVis.prototype.filterData = function(){
 	{
 		var add = 0;
 		// sat_avg filter
-		if(schools[sc].SAT_AVG === "NULL" && !($("#nullSat").is(":checked")))
+		if((schools[sc].SAT_AVG === "NULL" || schools[sc].SAT_AVG === "n/a") && (!$("#nullSat").is(":checked")))
 			add++;
 		if( (parseInt(schools[sc].SAT_AVG) > self.fData["Sat_Avg"].min) && (parseInt(schools[sc].SAT_AVG) < self.fData["Sat_Avg"].max) )
 			add++;
 		
 		// act_avg filter
-		if(schools[sc].ACTCMMID === "NULL" && !($("#nullAct").is(":checked")))
+		if((schools[sc].ACTCMMID === "NULL" || schools[sc].ACTCMMID === "n/a") && (!$("#nullAct").is(":checked")))
 			add++;
 		if( (parseInt(schools[sc].ACTCMMID) > self.fData["ACTCMMID"].min) && (parseInt(schools[sc].ACTCMMID) < self.fData["ACTCMMID"].max) )
 			add++;
 		
 		// tuitionfee_in filter
-		if(schools[sc].TUITIONFEE_IN === "NULL" && !($("#nullIn").is(":checked")))
+		if((schools[sc].TUITIONFEE_IN === "NULL" || schools[sc].TUITIONFEE_IN === "n/a") && (!$("#nullIn").is(":checked")))
 			add++;
 		if( (parseInt(schools[sc].TUITIONFEE_IN) > self.fData["TUITIONFEE_IN"].min) && (parseInt(schools[sc].TUITIONFEE_IN) < self.fData["TUITIONFEE_IN"].max) )
 			add++;
 		
 		// tuitionfee_out filter
-		if(schools[sc].TUITIONFEE_OUT === "NULL" && !($("#nullOut").is(":checked")))
+		if((schools[sc].TUITIONFEE_OUT === "NULL" || schools[sc].TUITIONFEE_OUT === "n/a") && (!$("#nullOut").is(":checked")))
 			add++;
 		if( (parseInt(schools[sc].TUITIONFEE_OUT) > self.fData["TUITIONFEE_OUT"].min) && (parseInt(schools[sc].TUITIONFEE_OUT) < self.fData["TUITIONFEE_OUT"].max) )
 			add++;
@@ -138,14 +138,14 @@ CollegeVis.prototype.filterData = function(){
 		//}
 		//else
 		//{
-		if(schools[sc].UGDS === "NULL" && !($("#nullPop").is(":checked")))
+		if((schools[sc].UGDS === "NULL" || schools[sc].UGDS === "n/a") && (!$("#nullPop").is(":checked")))
 			add++;	
-		if( ((parseInt(schools[sc].UGDS) >= self.fData["UGDS"].min1) && (parseInt(schools[sc].UGDS) <= self.fData["UGDS"].max1)) && ((parseInt(schools[sc].UGDS) >= self.fData["UGDS"].min2) && (parseInt(schools[sc].UGDS) <= self.fData["UGDS"].max2)))
+		if(((parseInt(schools[sc].UGDS) >= self.fData["UGDS"].min1) && (parseInt(schools[sc].UGDS) <= self.fData["UGDS"].max1)) || ((parseInt(schools[sc].UGDS) >= self.fData["UGDS"].min2) && (parseInt(schools[sc].UGDS) <= self.fData["UGDS"].max2)))
 			add++;
 		//}
 		
 		// type of school  filter
-		if(schools[sc].CONTROL === "NULL")
+		if(schools[sc].CONTROL === "NULL" || schools[sc].CONTROL === "n/a")
 			add++;
 		if( (parseInt(schools[sc].CONTROL) >= self.fData["CONTROL"].min) && (parseInt(schools[sc].CONTROL) <= self.fData["CONTROL"].max) )
 			add++;
