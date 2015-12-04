@@ -13,8 +13,8 @@ var MapVis = function() {
 			.range(["#AF0025", "#FFCC00"]);
 
 	var projection = d3.geo.albersUsa()
-					.translate([400, 250])
-					.scale(1000);
+					.translate([500, 275])
+					.scale(1200);
 
 	var path = d3.geo.path()
 		.projection(projection);

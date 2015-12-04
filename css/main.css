@@ -210,8 +210,8 @@ input#GroupSize{
 /*  css for the selected school table */
 .selectedSchool {
 
-	float: left;
-	width: 50%;
+	float: right;
+	width: 45%;
 	height: 100%;
 	text-align:center;
 	margin: 10px;
