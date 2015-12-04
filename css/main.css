@@ -72,11 +72,12 @@ body{
 /* styles for the schools list */
 
 .groupSchools {
-	width: 800px;
-	height: 500px;
-	float: right;
+
+	float: left;
+	width: 50%;
+	height: 100%;
 	text-align:center;
-	margin: 10px;
+	margin-right: 10px;
 	display: inline-block;
 	/*border: 1px solid black;*/
 }
@@ -199,9 +200,10 @@ input#GroupSize{
 
 /*  css for the selected school table */
 .selectedSchool {
-	width: 400px;
-	height: 400px;
-	/*float: right;*/
+
+	float: left;
+	width: 50%;
+	height: 100%;
 	text-align:center;
 	margin: 10px;
 	display: inline-block;
