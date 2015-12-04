@@ -37,6 +37,8 @@ CollegeVis.prototype.update = function(){
 	
 	// updated filtered school list 
 	self.fschools = self.filterData();
+
+	self.SelectedSchoolDetails.buildInfo(self.SelectedSchool);
 	
 	
 	// update graphs,etc
@@ -188,5 +190,6 @@ CollegeVis.prototype.createGraphs = function(){
 	self.map = new MapVis();
 	self.SelectedList = new SchoolsList(self);
 	self.graphs = new Graphs(self);
+	self.SelectedSchoolDetails = new Selected(self);
 	
 }
