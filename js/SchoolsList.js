@@ -168,9 +168,11 @@ var SchoolsList = function(cVis) {
 		
 		
 		sData.getItemMetadata = function(row){
-			
-			if(sData[row].UNITID == cVis.SelectedSchool)
-				return { cssClasses: 'Selected' };
+			if( row < sData.length)
+			{
+				if(sData[row].UNITID == cVis.SelectedSchool)
+					return { cssClasses: 'Selected' };
+			}
 			return "";
 		}
 		
@@ -404,6 +406,43 @@ var SchoolsList = function(cVis) {
 			var selectedRows = [];
 			for (var i = 0; i < rows.length; i++)
 			  selectedRows.push(left.length + i);
+			grid.resetActiveCell();
+			grid.setData(sData);
+			grid.setSelectedRows(selectedRows);
+			grid.render();
+			
+			// update the graphs with the new list
+			cVis.fSchools = sData;
+			cVis.updateGraphs(sData);
+		
+		});
+		
+		
+		
+		$("#SSRemoveButton").click(function(){
+			
+			var extractedRows = [], left, right;
+			var rows = grid.getSelectedRows();
+			var insertBefore = 0;
+			left = sData.slice(0, insertBefore);
+			right = sData.slice(insertBefore, sData.length);
+			rows.sort(function(a,b) { return a-b; });
+			for (var i = 0; i < rows.length; i++) {
+			  extractedRows.push(sData[rows[i]]);
+			}
+			rows.reverse();
+			for (var i = 0; i < rows.length; i++) {
+			  var row = rows[i];
+			  if (row < insertBefore) {
+				left.splice(row, 1);
+			  } else {
+				right.splice(row - insertBefore, 1);
+			  }
+			}
+			sData = left.concat(right);
+			var selectedRows = [];
+			//for (var i = 0; i < rows.length; i++)
+			//  selectedRows.push(left.length + i);
 			grid.resetActiveCell();
 			grid.setData(sData);
 			grid.setSelectedRows(selectedRows);
