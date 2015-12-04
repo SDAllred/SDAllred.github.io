@@ -143,7 +143,7 @@ CollegeVis.prototype.filterData = function(){
 		//{
 		if((schools[sc].UGDS === "NULL" || schools[sc].UGDS === "n/a") && (!$("#nullPop").is(":checked")))
 			add++;	
-		if(((parseInt(schools[sc].UGDS) >= self.fData["UGDS"].min1) && (parseInt(schools[sc].UGDS) <= self.fData["UGDS"].max1)) || ((parseInt(schools[sc].UGDS) >= self.fData["UGDS"].min2) && (parseInt(schools[sc].UGDS) <= self.fData["UGDS"].max2)))
+		if(((parseInt(schools[sc].UGDS) > self.fData["UGDS"].min1) && (parseInt(schools[sc].UGDS) < self.fData["UGDS"].max1)) || ((parseInt(schools[sc].UGDS) > self.fData["UGDS"].min2) && (parseInt(schools[sc].UGDS) < self.fData["UGDS"].max2)))
 			add++;
 		//}
 		
