@@ -117,9 +117,15 @@ body{
 	/*border: 1px solid black;*/
 }
 
+.groupDetails input{
+	font-size:inherit;
+}
+.groupDetails select{
+	font-size:inherit;
+}
 
 input#GroupSize{
-	width:40px;
+	width:100px;
 	text-align:center;
 }
 /*  tootlips in graphs */
