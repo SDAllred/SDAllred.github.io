@@ -394,12 +394,30 @@ var SchoolsList = function(cVis) {
 			var sign = (asc=="true") ? 1:-1; 
 			
 			 sData.sort(function (dataRow1, dataRow2) {
-				var value1 = (asc=="true") ? Number.MAX_VALUE:0;
-				var value2 = (asc=="true") ? Number.MAX_VALUE:0;
-				if(( dataRow1[field] != "NULL") || ( dataRow1[field] != "n/a"))
-					value1 = parseFloat(dataRow1[field]);
-				if(( dataRow1[field] != "NULL")|| ( dataRow1[field] != "n/a"))
-					value2 = parseFloat(dataRow2[field]);
+				
+				
+				if(( dataRow1[field] != "NULL") && ( dataRow1[field] != "n/a"))
+				{
+					if(field != "INSTNM")
+						value1 = parseFloat(dataRow1[field]);
+					else
+						value1 = dataRow1[field];
+				}
+				else
+					var value1 = (asc=="true") ? 2000000 : 0;
+				
+				
+				if(( dataRow2[field] != "NULL") && ( dataRow2[field] != "n/a"))
+				{
+					if(field != "INSTNM")
+						value2= parseFloat(dataRow2[field]);
+					else
+						value2 = dataRow2[field];
+				}
+				else
+					var value2 = (asc=="true") ? 2000000 : 0;
+				
+				
 				var result = (value1 == value2 ? 0 : (value1 > value2 ? 1 : -1)) * sign;
 				if (result != 0) {
 					return result;
@@ -507,6 +525,7 @@ var SchoolsList = function(cVis) {
 		
 		if( schools.length == 0)
 		{
+			data[0] ={};
 			data[0].UGDS = "";
 			data[0].UNITID = "";
 			data[0].INSTNM = "";
