@@ -175,7 +175,7 @@ CollegeVis.prototype.filterData = function(){
 	
 	
 	// return filtered schools
-	//console.log(fschools);
+	console.log(fschools);
 	return fschools;
 
 }

@@ -153,9 +153,9 @@ var SchoolsList = function(cVis) {
 		var columns = [
 			{id: "chart", name: "Chart", width:70, formatter: waitingFormatter, rerenderOnResize: true, asyncPostRender: renderSparkline},
 			{id: "title", name: "Title", field: "INSTNM", width: 408 , behavior: "selectAndMove", resizable: false, cssClass: "cell-reorder dnd"},
-			{id: "UGDS", name: "Pop", field: "UGDS", width: 70 ,sortable: true},
-			{id: "TuIn", name: "Type", field: "CONTROL", width: 70 ,sortable: true},
-			{id: "TuOut", name: "Cost", field: "COSTT4_A", width: 70 ,sortable: true},
+			{id: "UGDS", name: "Pop", field: "UGDSLabel", width: 70 ,sortable: true},
+			{id: "TuIn", name: "Type", field: "CONTROLLabel", width: 70 ,sortable: true},
+			{id: "TuOut", name: "Cost", field: "COSTT4_ALabel", width: 70 ,sortable: true},
 		];
 
 		var options = {
@@ -526,11 +526,11 @@ var SchoolsList = function(cVis) {
 		if( schools.length == 0)
 		{
 			data[0] ={};
-			data[0].UGDS = "";
+			data[0].UGDSLabel = "";
 			data[0].UNITID = "";
 			data[0].INSTNM = "";
-			data[0].CONTROL = "";
-			data[0].COSTT4_A = "";
+			data[0].CONTROLLabel = "";
+			data[0].COSTT4_ALabel = "";
 			data[0].UGDSsc = 0;
 			data[0].GRAD_DEBT_MDN_SUPPsc= 0;
 			data[0].COSTT4_Asc= 0;
@@ -572,22 +572,22 @@ var SchoolsList = function(cVis) {
 			else
 			{
 				data[sc].UGDSsc = 0;
-				data[sc].UGDS = "n/a";
+				data[sc].UGDSLabel = "n/a";
 			}
 			
 			// type 
 			switch(schools[sc].CONTROL){
 				case '1':
-					data[sc].CONTROL = "Public" ;
+					data[sc].CONTROLLabel = "Public" ;
 					break;
 				case '2': 
-					data[sc].CONTROL = "Private" ;
+					data[sc].CONTROLLabel = "Private" ;
 					break;
 				case '3': 
-					data[sc].CONTROL = "Private for profit" ;
+					data[sc].CONTROLLabel = "Private for profit" ;
 					break;
 				default:
-					data[sc].CONTROL = "n/a" ;
+					data[sc].CONTROLLabel = "n/a" ;
 					break;
 			}
 
@@ -598,7 +598,7 @@ var SchoolsList = function(cVis) {
 			else
 			{
 				data[sc].COSTT4_Asc = 0
-				data[sc].COSTT4_A = "n/a";
+				data[sc].COSTT4_ALabel = "n/a";
 			}
 			
 			
