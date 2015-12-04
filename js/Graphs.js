@@ -63,7 +63,7 @@ var Graphs = function(cVis) {
 	// this builds the graph. 
 	// id = the id of the svg 
 	// data = this is what is going to be displayed. each element needs the attributes .INSTNM and .Data
-	// widthT , heighT - height and width of the svg
+	// widthT , heightT - height and width of the svg
 	this.buildGraph = function(id,data,widthT,heightT)
 	{
 		var svg = d3.select("#"+id);
@@ -104,8 +104,8 @@ var Graphs = function(cVis) {
 				.offset([-20, 0])
 				.html(function(d) { 
 					if(d.Data == 0)
-						return "("+d.INSTNM+",n/a)";
-					return "("+d.INSTNM+","+d.Data+")"; 
+						return "("+d.INSTNM+" ,n/a)";
+					return "("+d.INSTNM+", "+d.Data+")";
 					});		
 		
 		

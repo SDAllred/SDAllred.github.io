@@ -135,7 +135,7 @@ CollegeVis.prototype.filterData = function(){
 		}
 		
 		// type of school  filter
-		if( (parseInt(schools[sc].CONTOL) >= self.fData["CONTROL"].min) && (parseInt(schools[sc].CONTROL) <= self.fData["CONTROL"].max) )
+		if( (parseInt(schools[sc].CONTROL) >= self.fData["CONTROL"].min) && (parseInt(schools[sc].CONTROL) <= self.fData["CONTROL"].max) )
 			add= true;
 		// selected school filter
 		schools[sc].selected = false;
