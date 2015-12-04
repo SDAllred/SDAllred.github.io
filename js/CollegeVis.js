@@ -39,7 +39,20 @@ CollegeVis.prototype.update = function(){
 	// updated filtered school list 
 	self.fschools = self.filterData();
 
-	self.SelectedSchoolDetails.buildInfo(self.SelectedSchool);
+    var sch;
+    if(self.SelectedSchool == ""){
+        sch = self.SelectedSchool
+    }else {
+
+        for (var i = 0; i < self.fschools.length; i++) {
+            if (self.fschools[i].UNITID == self.SelectedSchool) {
+                sch = self.fschools[i];
+                break;
+            }
+        }
+    }
+
+	self.SelectedSchoolDetails.buildInfo(sch);
 	
 	
 	// update graphs,etc
