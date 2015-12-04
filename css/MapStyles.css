@@ -9,6 +9,7 @@ body {
   width:800px;
   height:550px;
   background:#1e1e1e;
+  margin:10px;
 }
 .state {
   fill: #ccc;

@@ -38,6 +38,7 @@ body{
 	float: left;
 	text-align:center;
 	/*border: 1px solid black;*/
+	margin:20px;
 }
 .map {
 	width: 800px;
@@ -51,7 +52,7 @@ body{
 /* styles for the schools list */
 
 .groupSchools {
-	width: 800px;
+	width: 700px;
 	height: 500px;
 	float: right;
 	text-align:center;
@@ -68,7 +69,7 @@ body{
 	list-style-type:none;
 	/*overflow:auto;*/
 	height: 500px;
-	width: 800px;
+	width: 700px;
 	
 	background: #898383;
 	color: #2B2A2A;
