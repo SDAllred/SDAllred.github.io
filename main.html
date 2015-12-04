@@ -42,6 +42,7 @@
 	<script src="js/CollegeVis.js"></script>
 	<script src="js/filterScript.js"></script>
 	<script src="js/main.js"></script>
+	<script src="js/SelectedSchoolDetails.js"></script>
     
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	
@@ -94,43 +95,7 @@
 								<input type="checkbox" id="private" value="private" checked/>Private<br>
 								<input type="checkbox" id="privateFP" value="privateFP" checked/>Private For-Profit<br>
 							</form>
-							<!--<div class="Checkbox1">
-								 <label>
-									<input type="checkbox" rel="small"  checked/>
-									Small (> 2,000)
-								</label>
-							</div>
-							<div class="Checkbox2">
-								<label>
-									<input type="checkbox" rel="Medium" checked/>
-									Medium (2,000 - 15,000)
-								</label>
-							</div>
-							<div class="Checkbox3">
-								<label>
-									<input type="checkbox" rel="Large" checked/>
-									Large (< 15,000)
-								</label>
-							</div>-->
-						
-							<!--<div class="Checkbox1-2">
-								 <label>
-									<input type="checkbox" rel="public" />
-									Public
-								</label>
-							</div>
-							<div class="Checkbox2-2">
-								<label>
-									<input type="checkbox" rel="private" />
-									Private
-								</label>
-							</div>
-							<div class="Checkbox3-2">
-								<label>
-									<input type="checkbox" rel="private forProfit" />
-									Private For-Profit
-								</label>
-							</div>-->
+
 						</div>
 
 						<div class="map" id="map">
@@ -168,7 +133,11 @@
 
 
 						<div class="selectedSchool">
-								<h1>testing </h1>
+							<h1 id = "NoData" >Select a School!</h1>
+							<h1 id = "SchoolName" ></h1>
+							<p id = "SchoolDetails"></p>
+
+
 						</div>
 					</div>
 
