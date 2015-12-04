@@ -172,7 +172,7 @@ var SchoolsList = function(cVis) {
 		
 		
 		sData.getItemMetadata = function(row){
-			if( row < sData.length)
+			if( row < sData.length || sData.length != 0)
 			{
 				if(sData[row].UNITID == cVis.SelectedSchool)
 					return { cssClasses: 'Selected' };
