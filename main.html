@@ -42,6 +42,7 @@
 	<script src="js/CollegeVis.js"></script>
 	<script src="js/filterScript.js"></script>
 	<script src="js/main.js"></script>
+	<script src="js/SelectedSchoolDetails.js"></script>
     
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	
@@ -109,7 +110,11 @@
 								<input type="checkbox" id="private" value="private" checked/>Private<br>
 								<input type="checkbox" id="privateFP" value="privateFP" checked/>Private For-Profit<br>
 							</form>
+<<<<<<< HEAD
 							
+=======
+
+>>>>>>> b0aa0bd3338e572cb5e78508cd9b9e68ca0dcc56
 						</div>
 
 						<div class="map" id="map">
@@ -129,6 +134,16 @@
 
 							<h1 id="gsTitle">Schools</h1>
 							<button id="SSTopButton">Move to Top</button>
+							<button id="SSRemoveButton">Remove Schools</button>
+							<div>
+							Sort by 
+							<button id="SortTitle" asc="false" value="INSTNM"  class="SortButton">Title</button>
+							<button id="SortType" asc="false" value="CONTROL" class="SortButton">Type</button>
+							<button id="SortDebt" asc="false" value="GRAD_DEBT_MDN_SUPP" class="SortButton">Debt</button>
+							<button id="SortCost" asc="false" value="COSTT4_A" class="SortButton">Cost</button>
+							<button id="SortAdmRate" asc="false" value="ADM_RATE" class="SortButton">Admission Rate</button>
+							<button id="SortEarning" asc="false" value="md_earn_wne_p10" class="SortButton">Earnings</button>
+							</div>
 							<div class= "ovScroll">
 								<div id="SchoolList" ></div>
 							</div>
@@ -136,9 +151,13 @@
 						</div>
 
 
-					<div class="selectedSchool">
+						<div class="selectedSchool">
+							<h1 id = "NoData" >Select a School!</h1>
+							<h1 id = "SchoolName" ></h1>
+							<p id = "SchoolDetails"></p>
 
-					</div>
+
+						</div>
 					</div>
 
 				</td>

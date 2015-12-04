@@ -37,6 +37,8 @@ CollegeVis.prototype.update = function(){
 	
 	// updated filtered school list 
 	self.fschools = self.filterData();
+
+	self.SelectedSchoolDetails.buildInfo(self.SelectedSchool);
 	
 	
 	// update graphs,etc
@@ -106,6 +108,7 @@ CollegeVis.prototype.filterData = function(){
 	for( var sc in schools)
 	{
 		var add = 0;
+		var selected = false;
 		// sat_avg filter
 		if((schools[sc].SAT_AVG === "NULL" || schools[sc].SAT_AVG === "n/a") && (!$("#nullSat").is(":checked")))
 			add++;
@@ -149,21 +152,22 @@ CollegeVis.prototype.filterData = function(){
 			add++;
 		if( (parseInt(schools[sc].CONTROL) >= self.fData["CONTROL"].min) && (parseInt(schools[sc].CONTROL) <= self.fData["CONTROL"].max) )
 			add++;
+		
 		// selected school filter
 		schools[sc].selected = false;
 		//if(schools[sc].UNITID === "NULL")
 			//add++;
-		//if( schools[sc].UNITID == self.SelectedSchool)
-		//{
-			//add++;
-			//schools[sc].selected = true;
-		//}	
+		if( schools[sc].UNITID == self.SelectedSchool)
+		{
+			selected = true;
+			schools[sc].selected = true;
+		}	
 		
 		
 		
 		
 		// add to list 
-		if(add >= 6)
+		if((add >= 6) || (selected))
 			fschools.push(schools[sc]);
 		
 	}
@@ -188,5 +192,6 @@ CollegeVis.prototype.createGraphs = function(){
 	self.map = new MapVis();
 	self.SelectedList = new SchoolsList(self);
 	self.graphs = new Graphs(self);
+	self.SelectedSchoolDetails = new Selected(self);
 	
 }

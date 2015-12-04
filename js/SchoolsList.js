@@ -15,8 +15,10 @@ function waitingFormatter(value) {
 function renderSparkline(cellNode, row, dataContext, colDef) {
 	var vals = [
 	  dataContext.UGDSsc,
-	  dataContext.TUITIONFEE_INsc,
-	  dataContext.TUITIONFEE_OUTsc,
+	  dataContext.GRAD_DEBT_MDN_SUPPsc,
+	  dataContext.COSTT4_Asc,
+	  dataContext.ADM_RATEsc,
+	  dataContext.md_earn_wne_p10scContext
 	];
 
 	$(cellNode).empty().sparkline(vals, {
@@ -30,8 +32,10 @@ function renderSparkline(cellNode, row, dataContext, colDef) {
 				tooltipValueLookups: {
 					'offset': {
 						0: 'Population',
-						1: 'Tuition In',
-						2: 'Tuition Out',
+						1: 'Debt',
+						2: 'Cost',
+						3: 'Adm Rate',
+						4: 'Earnings',
 					}
 				},
 				});
@@ -149,9 +153,9 @@ var SchoolsList = function(cVis) {
 		var columns = [
 			{id: "chart", name: "Chart", width:70, formatter: waitingFormatter, rerenderOnResize: true, asyncPostRender: renderSparkline},
 			{id: "title", name: "Title", field: "INSTNM", width: 408 , behavior: "selectAndMove", resizable: false, cssClass: "cell-reorder dnd"},
-			{id: "UGDS", name: "Population", field: "UGDS", width: 70 ,sortable: true},
-			{id: "TuIn", name: "Tuition In", field: "TUITIONFEE_IN", width: 70 ,sortable: true},
-			{id: "TuOut", name: "Tuition Out", field: "TUITIONFEE_OUT", width: 70 ,sortable: true},
+			{id: "UGDS", name: "Pop", field: "UGDS", width: 70 ,sortable: true},
+			{id: "TuIn", name: "Type", field: "CONTROL", width: 70 ,sortable: true},
+			{id: "TuOut", name: "Cost", field: "COSTT4_A", width: 70 ,sortable: true},
 		];
 
 		var options = {
@@ -168,9 +172,11 @@ var SchoolsList = function(cVis) {
 		
 		
 		sData.getItemMetadata = function(row){
-			
-			if(sData[row].UNITID == cVis.SelectedSchool)
-				return { cssClasses: 'Selected' };
+			if( row < sData.length || sData.length != 0)
+			{
+				if(sData[row].UNITID == cVis.SelectedSchool)
+					return { cssClasses: 'Selected' };
+			}
 			return "";
 		}
 		
@@ -380,6 +386,45 @@ var SchoolsList = function(cVis) {
 			});
 		
 		
+		
+		
+		
+		function sortList(field, asc){
+			
+			var sign = (asc=="true") ? 1:-1; 
+			
+			 sData.sort(function (dataRow1, dataRow2) {
+				var value1 = (asc=="true") ? Number.MAX_VALUE:0;
+				var value2 = (asc=="true") ? Number.MAX_VALUE:0;
+				if(( dataRow1[field] != "NULL") || ( dataRow1[field] != "n/a"))
+					value1 = parseFloat(dataRow1[field]);
+				if(( dataRow1[field] != "NULL")|| ( dataRow1[field] != "n/a"))
+					value2 = parseFloat(dataRow2[field]);
+				var result = (value1 == value2 ? 0 : (value1 > value2 ? 1 : -1)) * sign;
+				if (result != 0) {
+					return result;
+				}
+				return 0;
+			  });
+			grid.invalidate();
+			grid.render();
+			  
+			// update the graphs with the new list
+			cVis.fSchools = sData;
+			cVis.updateGraphs(sData);
+			
+		}
+		
+		
+		$(".SortButton").click(function(e){
+			var asc = $(this).attr("asc");
+			
+			$(this).attr("asc", ((asc=="true")?'false':'true'));
+			var field = $(this).val();
+			sortList(field,asc);
+		});
+		
+		
 		$("#SSTopButton").click(function(){
 			
 			var extractedRows = [], left, right;
@@ -415,18 +460,86 @@ var SchoolsList = function(cVis) {
 		
 		});
 		
+		
+		
+		$("#SSRemoveButton").click(function(){
+			
+			var extractedRows = [], left, right;
+			var rows = grid.getSelectedRows();
+			var insertBefore = 0;
+			left = sData.slice(0, insertBefore);
+			right = sData.slice(insertBefore, sData.length);
+			rows.sort(function(a,b) { return a-b; });
+			for (var i = 0; i < rows.length; i++) {
+			  extractedRows.push(sData[rows[i]]);
+			}
+			rows.reverse();
+			for (var i = 0; i < rows.length; i++) {
+			  var row = rows[i];
+			  if (row < insertBefore) {
+				left.splice(row, 1);
+			  } else {
+				right.splice(row - insertBefore, 1);
+			  }
+			}
+			sData = left.concat(right);
+			var selectedRows = [];
+			//for (var i = 0; i < rows.length; i++)
+			//  selectedRows.push(left.length + i);
+			grid.resetActiveCell();
+			grid.setData(sData);
+			grid.setSelectedRows(selectedRows);
+			grid.render();
+			
+			// update the graphs with the new list
+			cVis.fSchools = sData;
+			cVis.updateGraphs(sData);
+		
+		});
+		
 	}
 
 	
 	
 	this.scaleData = function(schools){ 
 		
-		// get max values for  scaling
-		var UGDSmax = d3.max(schools , function(d) { if (d.UGDS != "NULL" ) return parseFloat(d.UGDS);});
-		var TuitionIn = d3.max(schools , function(d) { if (d.TUITIONFEE_IN != "NULL" ) return parseFloat(d.TUITIONFEE_IN);});
-		var TuitionOut = d3.max(schools , function(d) { if (d.TUITIONFEE_OUT != "NULL" ) return parseFloat(d.TUITIONFEE_OUT);});
-		
 		var data = [];
+		
+		if( schools.length == 0)
+		{
+			data[0].UGDS = "";
+			data[0].UNITID = "";
+			data[0].INSTNM = "";
+			data[0].CONTROL = "";
+			data[0].COSTT4_A = "";
+			data[0].UGDSsc = 0;
+			data[0].GRAD_DEBT_MDN_SUPPsc= 0;
+			data[0].COSTT4_Asc= 0;
+			data[0].ADM_RATEsc= 0;
+			data[0].md_earn_wne_p10scContext= 0;
+			
+			return data;
+		}
+		
+		
+		
+		// get max values for  scaling
+		// pop
+		var UGDSmax = d3.max(schools , function(d) { if (d.UGDS != "NULL" ) return parseFloat(d.UGDS);});
+		
+		// GRAD_DEBT_MDN_SUPP
+		var GRAD_DEBT_MDN_SUPPmax = d3.max(schools , function(d) { if (d.GRAD_DEBT_MDN_SUPP != "NULL" ) return parseFloat(d.GRAD_DEBT_MDN_SUPP);});
+		
+		//ADM_RATE
+		var ADM_RATEmax = d3.max(schools , function(d) { if (d.ADM_RATE != "NULL" ) return parseFloat(d.ADM_RATE);});
+		
+		//cost
+		var COSTT4_AMax = d3.max(schools , function(d) { if (d.COSTT4_A != "NULL" ) return parseFloat(d.COSTT4_A);});
+		
+		//md_earn_wne_p10
+		var md_earn_wne_p10max = d3.max(schools , function(d) { if (d.md_earn_wne_p10 != "NULL" ) return parseFloat(d.md_earn_wne_p10);});
+		
+		
 		
 		for( sc in schools)
 		{
@@ -434,6 +547,7 @@ var SchoolsList = function(cVis) {
 			data[sc] = schools[sc];
 			
 			// scale data 
+			// population
 			if( schools[sc].UGDS != "NULL")
 				data[sc].UGDSsc = (parseFloat(schools[sc].UGDS) / UGDSmax).toFixed(2) 
 			else
@@ -441,21 +555,38 @@ var SchoolsList = function(cVis) {
 				data[sc].UGDSsc = 0;
 				data[sc].UGDS = "n/a";
 			}
-			if( schools[sc].TUITIONFEE_IN != "NULL")
-				data[sc].TUITIONFEE_INsc = (parseFloat(schools[sc].TUITIONFEE_IN) / TuitionIn).toFixed(2)
-			else
-			{
-				data[sc].TUITIONFEE_INsc = 0
-				data[sc].TUITIONFEE_IN = "n/a";
+			
+			// type 
+			switch(schools[sc].CONTROL){
+				case '1':
+					data[sc].CONTROL = "Public" ;
+					break;
+				case '2': 
+					data[sc].CONTROL = "Private" ;
+					break;
+				case '3': 
+					data[sc].CONTROL = "Private for profit" ;
+					break;
+				default:
+					data[sc].CONTROL = "n/a" ;
+					break;
 			}
-			if( schools[sc].TUITIONFEE_OUT != "NULL")
-				data[sc].TUITIONFEE_OUTsc =  (parseFloat(schools[sc].TUITIONFEE_OUT) / TuitionOut).toFixed(2) 
+
+			
+			// cost 
+			if( schools[sc].COSTT4_A != "NULL")
+				data[sc].COSTT4_Asc =  (parseFloat(schools[sc].COSTT4_A) / COSTT4_AMax).toFixed(2) 
 			else
 			{
-				data[sc].TUITIONFEE_OUTsc = 0
-				data[sc].TUITIONFEE_OUT = "n/a";
+				data[sc].COSTT4_Asc = 0
+				data[sc].COSTT4_A = "n/a";
 			}
 			
+			
+			
+			data[sc].GRAD_DEBT_MDN_SUPPsc = ( schools[sc].GRAD_DEBT_MDN_SUPP != "NULL" ) ?  (parseFloat(schools[sc].GRAD_DEBT_MDN_SUPP) / GRAD_DEBT_MDN_SUPPmax).toFixed(2) : "n/a";
+			data[sc].ADM_RATEsc = ( schools[sc].ADM_RATE != "NULL" ) ?  (parseFloat(schools[sc].ADM_RATE) / ADM_RATEmax).toFixed(2) : "n/a";
+			data[sc].md_earn_wne_p10sc = ( schools[sc].md_earn_wne_p10 != "NULL" ) ?  (parseFloat(schools[sc].md_earn_wne_p10) / md_earn_wne_p10max).toFixed(2) : "n/a";
 		}
 	
 		return data;
