@@ -123,7 +123,7 @@ function createFilters(cVis) {
 	//Cheklist for population size
 	$("#studentPop :checkbox").change(function(){
 		
-		var val ={min1:0, min2:0, max1:50000, max2:50000};
+		var val ={min1:0, min2:0, max1:0, max2:0};
 		if($("#small").is(":checked"))
 		{
 			if($("#medium").is(":checked"))
@@ -137,7 +137,7 @@ function createFilters(cVis) {
 				{
 					val.min1 = 0;
 					val.min2 = 0;
-				    val.max1 = 50000
+				    val.max1 = 50000;
 					val.max2 = 50000;
 				}
 			}
@@ -175,12 +175,19 @@ function createFilters(cVis) {
 			}
 		}
 		
-		else
+		else if($("#large").is(":checked"))
 		{
 			val.min1 = 15001;
 			val.min2 = 15001;
 			val.max1 = 50000;
 			val.max2 = 50000;
+		}
+		else
+		{
+			val.min1 = 0;
+			val.min2 = 0;
+			val.max1 = 0;
+			val.max2 = 0;
 		}
 		
 		cVis.fData["UGDS"] = val;
@@ -227,12 +234,16 @@ function createFilters(cVis) {
 				val.max = 3;
 			}
 		}
-		else
+		else if($("#privateFP").is(":checked"))
 		{
 			val.min = 3;
 			val.max = 3;
 		}
-		
+		else
+		{
+			val.min = 0;
+			val.max = 0;
+		}
 		
 		cVis.fData["CONTROL"] = val;
 		cVis.update();

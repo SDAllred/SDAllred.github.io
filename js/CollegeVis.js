@@ -105,51 +105,65 @@ CollegeVis.prototype.filterData = function(){
 	
 	for( var sc in schools)
 	{
-		add = false
+		var add = 0;
 		// sat_avg filter
+		if(schools[sc].SAT_AVG === "NULL")
+			add++;
 		if( (parseInt(schools[sc].SAT_AVG) > self.fData["Sat_Avg"].min) && (parseInt(schools[sc].SAT_AVG) < self.fData["Sat_Avg"].max) )
-			add= true;
+			add++;
 		
 		// act_avg filter
+		if(schools[sc].ACTCMMID === "NULL")
+			add++;
 		if( (parseInt(schools[sc].ACTCMMID) > self.fData["ACTCMMID"].min) && (parseInt(schools[sc].ACTCMMID) < self.fData["ACTCMMID"].max) )
-			add= true;
+			add++;
 		
 		// tuitionfee_in filter
+		if(schools[sc].TUITIONFEE_IN === "NULL")
+			add++;
 		if( (parseInt(schools[sc].TUITIONFEE_IN) > self.fData["TUITIONFEE_IN"].min) && (parseInt(schools[sc].TUITIONFEE_IN) < self.fData["TUITIONFEE_IN"].max) )
-			add= true;
+			add++;
 		
 		// tuitionfee_out filter
+		if(schools[sc].TUITIONFEE_OUT === "NULL")
+			add++;
 		if( (parseInt(schools[sc].TUITIONFEE_OUT) > self.fData["TUITIONFEE_OUT"].min) && (parseInt(schools[sc].TUITIONFEE_OUT) < self.fData["TUITIONFEE_OUT"].max) )
-			add= true;
+			add++;
 		
 		// population size filter
-		if(self.fData["UGDS"].min1 == self.fData["UGDS"].min2 && self.fData["UGDS"].max1 == self.fData["UGDS"].max2)
-		{
-			if( (parseInt(schools[sc].UGDS) >= self.fData["UGDS"].min1) && (parseInt(schools[sc].UGDS) <= self.fData["UGDS"].max1) )
-				add= true;
-		}
-		else
-		{
-			if( ((parseInt(schools[sc].UGDS) >= self.fData["UGDS"].min1) && (parseInt(schools[sc].UGDS) <= self.fData["UGDS"].max1)) && ((parseInt(schools[sc].UGDS) >= self.fData["UGDS"].min2) && (parseInt(schools[sc].UGDS) <= self.fData["UGDS"].max2)))
-				add= true;
-		}
+		//if(self.fData["UGDS"].min1 == self.fData["UGDS"].min2 && self.fData["UGDS"].max1 == self.fData["UGDS"].max2)
+		//{
+			//if( (parseInt(schools[sc].UGDS) >= self.fData["UGDS"].min1) && (parseInt(schools[sc].UGDS) <= self.fData["UGDS"].max1) )
+				//add= true;
+		//}
+		//else
+		//{
+		if(schools[sc].UGDS === "NULL")
+			add++;	
+		if( ((parseInt(schools[sc].UGDS) >= self.fData["UGDS"].min1) && (parseInt(schools[sc].UGDS) <= self.fData["UGDS"].max1)) && ((parseInt(schools[sc].UGDS) >= self.fData["UGDS"].min2) && (parseInt(schools[sc].UGDS) <= self.fData["UGDS"].max2)))
+			add++;
+		//}
 		
 		// type of school  filter
-		if( (parseInt(schools[sc].CONTOL) >= self.fData["CONTROL"].min) && (parseInt(schools[sc].CONTROL) <= self.fData["CONTROL"].max) )
-			add= true;
+		if(schools[sc].CONTROL === "NULL")
+			add++;
+		if( (parseInt(schools[sc].CONTROL) >= self.fData["CONTROL"].min) && (parseInt(schools[sc].CONTROL) <= self.fData["CONTROL"].max) )
+			add++;
 		// selected school filter
 		schools[sc].selected = false;
-		if( schools[sc].UNITID == self.SelectedSchool)
-		{
-			add = true;
-			schools[sc].selected = true;
-		}	
+		//if(schools[sc].UNITID === "NULL")
+			//add++;
+		//if( schools[sc].UNITID == self.SelectedSchool)
+		//{
+			//add++;
+			//schools[sc].selected = true;
+		//}	
 		
 		
 		
 		
 		// add to list 
-		if(add)
+		if(add >= 6)
 			fschools.push(schools[sc]);
 		
 	}
