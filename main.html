@@ -69,23 +69,38 @@
 								<label for="amount">Avg Sat Admitted:</label><span id="SatAvgVal" ></span>
 								<div id="SatAvgSlider"></div>
 							</p>
+							<form id="nullSAT">
+								<input type="checkbox" id="nullSat" value="null"/>Remove schools with no SAT score data<br>
+							</form>
 							<p>
 								<label for="amount">Median of Act Admitted:</label><span id="ActMedianVal" ></span>
 								<div id="ActMedianSlider"></div>
 							</p>
+							<form id="nullACT">
+								<input type="checkbox" id="nullAct" value="null"/>Remove schools with no ACT score data<br>
+							</form>
 							<p>
 								<label for="amount">Tuition Cost In-State:</label><span id="TuitionCostInVal" ></span>
 								<div id="TuitionCostInSlider"></div>
 							</p>
+							<form id="nullTuitionIn">
+								<input type="checkbox" id="nullIn" value="null"/>Remove schools with no in-state tuition Cost data<br>
+							</form>
 							<p>
 								<label for="amount">Tuition Cost Out-of-State:</label><span id="TuitionCostOutVal" ></span>
 								<div id="TuitionCostOutSlider"></div>
 							</p>
+							<form id="nullTuitionOut">
+								<input type="checkbox" id="nullOut" value="null"/>Remove schools with no out-of-state tuition Cost data<br>
+							</form>
 							Size of Student Population
 							<form id="studentPop">
 								<input type="checkbox" id="small" value="small"  checked/>Small (> 2,000)<br>
 								<input type="checkbox" id="medium" value="Medium" checked/>Medium (2,000 - 15,000)<br>
 								<input type="checkbox" id="large" value="Large" checked/>Large (< 15,000)<br>
+							</form>
+							<form id="nullPopulation">
+								<input type="checkbox" id="nullPop" value="null"/>Remove schools with no student population data<br>
 							</form>
 								<br/><br/>
 							Type of School
@@ -94,43 +109,7 @@
 								<input type="checkbox" id="private" value="private" checked/>Private<br>
 								<input type="checkbox" id="privateFP" value="privateFP" checked/>Private For-Profit<br>
 							</form>
-							<!--<div class="Checkbox1">
-								 <label>
-									<input type="checkbox" rel="small"  checked/>
-									Small (> 2,000)
-								</label>
-							</div>
-							<div class="Checkbox2">
-								<label>
-									<input type="checkbox" rel="Medium" checked/>
-									Medium (2,000 - 15,000)
-								</label>
-							</div>
-							<div class="Checkbox3">
-								<label>
-									<input type="checkbox" rel="Large" checked/>
-									Large (< 15,000)
-								</label>
-							</div>-->
-						
-							<!--<div class="Checkbox1-2">
-								 <label>
-									<input type="checkbox" rel="public" />
-									Public
-								</label>
-							</div>
-							<div class="Checkbox2-2">
-								<label>
-									<input type="checkbox" rel="private" />
-									Private
-								</label>
-							</div>
-							<div class="Checkbox3-2">
-								<label>
-									<input type="checkbox" rel="private forProfit" />
-									Private For-Profit
-								</label>
-							</div>-->
+							
 						</div>
 
 						<div class="map" id="map">
