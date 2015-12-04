@@ -152,8 +152,6 @@ var SchoolsList = function(cVis) {
 			{id: "UGDS", name: "Population", field: "UGDS", width: 70 ,sortable: true},
 			{id: "TuIn", name: "Tuition In", field: "TUITIONFEE_IN", width: 70 ,sortable: true},
 			{id: "TuOut", name: "Tuition Out", field: "TUITIONFEE_OUT", width: 70 ,sortable: true},
-			
-			
 		];
 
 		var options = {
@@ -258,6 +256,7 @@ var SchoolsList = function(cVis) {
 			grid.render();
 			
 			// update the graphs with the new list
+			cVis.fSchools = sData;
 			cVis.updateGraphs(sData);
 		  });
 		  grid.registerPlugin(moveRowsPlugin);
@@ -376,6 +375,7 @@ var SchoolsList = function(cVis) {
 			  grid.render();
 			  
 				// update the graphs with the new list
+				cVis.fSchools = sData;
 				cVis.updateGraphs(sData);
 			});
 		
@@ -410,6 +410,7 @@ var SchoolsList = function(cVis) {
 			grid.render();
 			
 			// update the graphs with the new list
+			cVis.fSchools = sData;
 			cVis.updateGraphs(sData);
 		
 		});
@@ -436,20 +437,24 @@ var SchoolsList = function(cVis) {
 			if( schools[sc].UGDS != "NULL")
 				data[sc].UGDSsc = (parseFloat(schools[sc].UGDS) / UGDSmax).toFixed(2) 
 			else
+			{
 				data[sc].UGDSsc = 0;
-			
-			
+				data[sc].UGDS = "n/a";
+			}
 			if( schools[sc].TUITIONFEE_IN != "NULL")
 				data[sc].TUITIONFEE_INsc = (parseFloat(schools[sc].TUITIONFEE_IN) / TuitionIn).toFixed(2)
 			else
+			{
 				data[sc].TUITIONFEE_INsc = 0
-			
-			
+				data[sc].TUITIONFEE_IN = "n/a";
+			}
 			if( schools[sc].TUITIONFEE_OUT != "NULL")
 				data[sc].TUITIONFEE_OUTsc =  (parseFloat(schools[sc].TUITIONFEE_OUT) / TuitionOut).toFixed(2) 
 			else
+			{
 				data[sc].TUITIONFEE_OUTsc = 0
-			
+				data[sc].TUITIONFEE_OUT = "n/a";
+			}
 			
 		}
 	
