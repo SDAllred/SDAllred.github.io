@@ -12,11 +12,12 @@ var Graphs = function(cVis) {
 	
 
 	$("#GroupValue").change(function(e){
-		cVis.updateGraphs(cVis.fschools);
+		console.log(cVis.fschools);
+		cVis.updateGraphs(null);
 	});
 	
 	$("#GroupSize").change(function(e){
-		cVis.updateGraphs(cVis.fschools);
+		cVis.updateGraphs(null);
 	});
 	
     this.build = function(schools) {
@@ -122,7 +123,7 @@ var Graphs = function(cVis) {
 		//bars.on("mouseover", function(){d3.select(this).style("fill", "black");})
 		//	.on("mouseout", function(){d3.select(this).style("fill", "steelblue");});
 			
-		bars.on("click", function(d,i) { console.log(d);})
+		bars.on("click", function(d,i) { console.log(d);  cVis.SelectedSchool = d.UNITID; })
 			.on('mouseover', tip.show)
 			.on('mouseout', tip.hide);
 			
