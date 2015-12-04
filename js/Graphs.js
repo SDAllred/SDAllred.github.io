@@ -37,8 +37,7 @@ var Graphs = function(cVis) {
         } else {
 
             for(var sch in schools)
-
-            Gschools.push(schools[sch]);
+				Gschools.push(schools[sch]);
         }
 
 		// get selected data type 

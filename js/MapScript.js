@@ -63,6 +63,7 @@ var MapVis = function() {
 		  + "translate(" + -(b[1][0] + b[0][0]) / 2 + "," + -(b[1][1] + b[0][1]) / 2 + ")");
 		  
 		g.selectAll(".college").classed("hidden", false);
+		g.selectAll(".counts").classed("hidden", true);
 		//$(".college").toggleClass(".hidden");
 		/*$(".college").each(function(){ 
 			$(this).toggleClass("hidden"); 
@@ -72,6 +73,7 @@ var MapVis = function() {
 	function reset() {
 	  g.selectAll(".active").classed("active", active = false);
 	  g.selectAll(".college").classed("hidden", true);
+	  g.selectAll(".counts").classed("hidden", false);
 	  g.transition().duration(750).attr("transform", "");
 	}
 

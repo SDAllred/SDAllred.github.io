@@ -40,7 +40,7 @@ CollegeVis.prototype.update = function(){
 	
 	
 	// update graphs,etc
-	self.map.updateMap(self.Data["usStateData"], self.Data["stateNames"], fschools);
+	self.map.updateMap(self.Data["usStateData"], self.Data["stateNames"], self.fschools);
 	self.SelectedList.build(self.fschools);
 	self.updateGraphs(self.fschools);
 
