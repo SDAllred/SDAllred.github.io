@@ -13,8 +13,8 @@ var MapVis = function() {
 			.range(["#AF0025", "#FFCC00"]);
 
 	var projection = d3.geo.albersUsa()
-					.translate([450, 300])
-					.scale(1200);
+					.translate([400, 250])
+					.scale(1000);
 
 	var path = d3.geo.path()
 		.projection(projection);
@@ -59,11 +59,12 @@ var MapVis = function() {
 	  var b = path.bounds(d);
 	  g.transition().duration(750).attr("transform",
 		  "translate(" + projection.translate() + ")"
-		  + "scale(" + .95 / Math.max((b[1][0] - b[0][0]) / width, (b[1][1] - b[0][1]) / height) + ")"
+		  + "scale(" + .75 / Math.max((b[1][0] - b[0][0]) / width, (b[1][1] - b[0][1]) / height) + ")"
 		  + "translate(" + -(b[1][0] + b[0][0]) / 2 + "," + -(b[1][1] + b[0][1]) / 2 + ")");
 		  
 		g.selectAll(".college").classed("hidden", false);
 		g.selectAll(".counts").classed("hidden", true);
+		g.selectAll(".selectedPt").classed("hidden", false);
 		//$(".college").toggleClass(".hidden");
 		/*$(".college").each(function(){ 
 			$(this).toggleClass("hidden"); 
@@ -74,6 +75,7 @@ var MapVis = function() {
 	  g.selectAll(".active").classed("active", active = false);
 	  g.selectAll(".college").classed("hidden", true);
 	  g.selectAll(".counts").classed("hidden", false);
+	  g.selectAll(".selectedPt").classed("hidden", false);
 	  g.transition().duration(750).attr("transform", "");
 	}
 
@@ -92,20 +94,28 @@ var MapVis = function() {
 		  n = states.length;
 
 	  states.forEach(function(d,i) { 
-		var tryit = names.filter(function(n) { return d.id == n.id; })[0];
-		if (typeof tryit === "undefined"){
-		  d.count = "";//"Unknown";
-		  //console.log(d);
-		  d.selected = false;
-		} else {
-		  d.count = tryit.count;
-		  d.selected = tryit.selected;
+		// filter out terriories 
+		if( d.id < 60)
+		{
+			var tryit = names.filter(function(n) { return d.id == n.id; })[0];
+			if (typeof tryit === "undefined"){
+			  d.count = "";//"Unknown";
+			  //console.log(d);
+			  d.selected = false;
+			  d.name = tryit.name;
+			  d.code = tryit.code;
+			} else {
+			  d.count = tryit.count;
+			  d.selected = tryit.selected;
+			  d.name = tryit.name;
+			  d.code = tryit.code;
+			}
 		}
 	  });
 
 		var state = g.selectAll(".state").data(states);
 		
-		stateEnter = state.enter().append("g").attr("class", "state");
+		stateEnter = state.enter().append("g").attr("class", "state").attr("id",function(d){return d.code;});
 
 		stateEnter.append("path")
 		  .attr("title", function(d,i) { return d.name; })
@@ -235,6 +245,9 @@ var MapVis = function() {
 			return false;
 		})
 		.style("fill", "#C3C2C2")	//todo change to proper color?
+		.classed("selectedPt",true)
+		.classed("hidden", false)
+		.attr("r", 3)
 		.each(function(){
 			this.parentNode.appendChild(this);
 		})
