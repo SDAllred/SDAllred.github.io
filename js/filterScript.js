@@ -252,6 +252,27 @@ function createFilters(cVis) {
 	cVis.fData["CONTROL"] ={};
 	cVis.fData["CONTROL"].min = 1;
 	cVis.fData["CONTROL"].max = 3;
+	
+	//Null filters
+	$("#nullSAT :checkbox").change(function(){
+		cVis.update();
+	});
+	
+	$("#nullACT :checkbox").change(function(){
+		cVis.update();
+	});
+	
+	$("#nullTuitionIn :checkbox").change(function(){
+		cVis.update();
+	});
+	
+	$("#nullTuitionOut :checkbox").change(function(){
+		cVis.update();
+	});
+	
+	$("#nullPopulation :checkbox").change(function(){
+		cVis.update();
+	}); 
 }
 
 
