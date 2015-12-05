@@ -123,7 +123,7 @@ var Graphs = function(cVis) {
 		//bars.on("mouseover", function(){d3.select(this).style("fill", "black");})
 		//	.on("mouseout", function(){d3.select(this).style("fill", "steelblue");});
 			
-		bars.on("click", function(d,i) { console.log(d);  cVis.SelectedSchool = d.UNITID; })
+		bars.on("click", function(d,i) { console.log(d);  cVis.SelectedSchool = d.UNITID; cVis.update(); })
 			.on('mouseover', tip.show)
 			.on('mouseout', tip.hide);
 			
