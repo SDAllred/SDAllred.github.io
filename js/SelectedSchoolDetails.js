@@ -129,24 +129,6 @@ var Selected = function(cVis) {
         }
 
 
-        //
-        //// the data binding
-        //var text = svg.selectAll("p")
-        //    .data(data);
-        //
-        //
-        //
-        //// how do we handle new elements?
-        //// we start with a transparent gray bar of width 0
-        //bars.enter().append("p")
-        //    .attr("x", 0)
-        //    .attr("y", height)
-        //    .attr("width", 0)
-        //    .attr("height", 0)
-        //    .attr("opacity", 0)
-        //    .classed("bars", true);
-        //
-
 
 
     }
