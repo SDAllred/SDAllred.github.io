@@ -366,6 +366,9 @@ var SchoolsList = function(cVis) {
 		// sorting the list 
 		grid.onSort.subscribe(function (e, args) {
 			  var cols = args.sortCols;
+			  var asc = cols[0].sortAsc ? "true":"false";
+			  sortList(cols[0].sortCol.field, asc);
+			  /*
 			  sData.sort(function (dataRow1, dataRow2) {
 				for (var i = 0, l = cols.length; i < l; i++) {
 				  var field = cols[i].sortCol.field;
@@ -383,7 +386,7 @@ var SchoolsList = function(cVis) {
 			  
 				// update the graphs with the new list
 				cVis.fSchools = sData;
-				cVis.updateGraphs(sData);
+				cVis.updateGraphs(sData);*/
 			});
 		
 		
@@ -399,7 +402,7 @@ var SchoolsList = function(cVis) {
 				var value1 = 0;
 				if(( dataRow1[field] != "NULL") && ( dataRow1[field] != "n/a") && (dataRow1[field] !="PrivacySuppressed"))
 				{
-					if(field != "INSTNM")
+					if(field != "INSTNM" && field != "CONTROLLabel")
 						value1 = parseFloat(dataRow1[field]);
 					else
 						value1 = dataRow1[field];
@@ -410,7 +413,7 @@ var SchoolsList = function(cVis) {
 				var value2 = 0;
 				if(( dataRow2[field] != "NULL") && ( dataRow2[field] != "n/a")  && (dataRow2[field] !="PrivacySuppressed"))
 				{
-					if(field != "INSTNM")
+					if(field != "INSTNM" && field != "CONTROLLabel")
 						value2= parseFloat(dataRow2[field]);
 					else
 						value2 = dataRow2[field];
@@ -570,7 +573,10 @@ var SchoolsList = function(cVis) {
 			// scale data 
 			// population
 			if(! isNaN(schools[sc].UGDS))
+			{
 				data[sc].UGDSsc = (parseFloat(schools[sc].UGDS) / UGDSmax).toFixed(2);
+				data[sc].UGDSLabel = parseFloat(schools[sc].UGDS);
+			}
 			else
 			{
 				data[sc].UGDSsc = 0;
@@ -596,7 +602,10 @@ var SchoolsList = function(cVis) {
 			
 			// cost 
 			if(! isNaN(schools[sc].COSTT4_A))
+			{
 				data[sc].COSTT4_Asc =  (parseFloat(schools[sc].COSTT4_A) / COSTT4_AMax).toFixed(2) 
+				data[sc].COSTT4_ALabel = parseFloat(schools[sc].COSTT4_A);
+			}
 			else
 			{
 				data[sc].COSTT4_Asc = 0
