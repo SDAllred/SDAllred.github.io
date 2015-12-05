@@ -65,11 +65,6 @@ var Selected = function(cVis) {
             }
 
 
-            if(data.UGDS == "NULL"){
-                $("#Pop").html("Undergraduate Population: Unknown");
-            } else{
-                $("#Pop").html("Undergraduate Population: " + data.UGDS);
-            }
 
             if(data.TUITIONFEE_IN == "NULL"){
                 $("#InState").html("In-State Tuition: Unknown");
