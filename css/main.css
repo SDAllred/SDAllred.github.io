@@ -65,6 +65,7 @@ body{
 	padding-left: 50px;
 	margin-left: 30px;
 	margin-right: 20px;
+	color: #BBBBBB;
 
 }
 
@@ -101,6 +102,7 @@ body{
 	width: 800px;
 	display: inline-block;
 	background: transparent;
+	color: #BBBBBB;
 
 }
 
@@ -223,6 +225,8 @@ input#GroupSize{
 	height: 100%;
 	display: inline-block;
 	color: #BBBBBB;
+	text-align: left;
+	font-size: 20px;
 }
 
 .NoData {

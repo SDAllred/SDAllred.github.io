@@ -27,7 +27,7 @@ var Selected = function(cVis) {
             $("#NoData").html("");
             $("#SchoolName").html(data.INSTNM);
 
-            $("#SchoolDetails").html("Webpage: " + data.INSTURL + "<br>" + data.CITY + ", " + data.STABBR );
+            $("#SchoolDetails").html( data.CITY + ", " + data.STABBR + "<br>" + "Webpage: " + data.INSTURL);
 
             if(data.MENONLY == "1"){
                 $("#MenWomen").html("Men Only School");
@@ -69,23 +69,23 @@ var Selected = function(cVis) {
             if(data.TUITIONFEE_IN == "NULL"){
                 $("#InState").html("In-State Tuition: Unknown");
             } else{
-                $("#InState").html("In-State Tuition: " + data.TUITIONFEE_IN);
+                $("#InState").html("In-State Tuition: $" + data.TUITIONFEE_IN);
             }
 
             if(data.TUITIONFEE_OUT == "NULL"){
                 $("#OutState").html("Out-of-State Tuition: Unknown");
             } else{
-                $("#OutState").html("Out-of-State Tuition: " + data.TUITIONFEE_OUT);
+                $("#OutState").html("Out-of-State Tuition: $" + data.TUITIONFEE_OUT);
             }
 
             if(data.COSTT4_A == "NULL"){
                 if(data.COSTT4_P != "NULL") {
-                    $("#AvCost").html("Average Cost of Attendance: " + data.COSTT4_P);
+                    $("#AvCost").html("Average Cost of Attendance: $" + data.COSTT4_P);
                 } else {
                     $("#AvCost").html("Average Cost of Attendance: Unknown");
                 }
             } else{
-                $("#AvCost").html("Average Cost of Attendance: " + data.COSTT4_A);
+                $("#AvCost").html("Average Cost of Attendance: $" + data.COSTT4_A);
             }
 
 
@@ -101,22 +101,16 @@ var Selected = function(cVis) {
                 $("#Loan").html("Percent of Undergraduates with Federal Student Loans: " + data.PCTFLOAN);
             }
 
-            if(data.PCTFLOAN == "NULL"){
-                $("#Loan").html("Percent of Undergraduates with Federal Student Loans: Unknown");
-            } else{
-                $("#Loan").html("Percent of Undergraduates with Federal Student Loans: " + data.PCTFLOAN);
-            }
-
-            if(data.GRAD_DEBT_MDN_SUPP == "NULL"){
+            if(data.GRAD_DEBT_MDN_SUPP == "NULL" || data.GRAD_DEBT_MDN_SUPP == "PrivacySuppressed" ){
                 $("#Debt").html("Median Debt of Graduates: Unknown");
             } else{
-                $("#Debt").html("Median Debt of Graduates: " + data.GRAD_DEBT_MDN_SUPP);
+                $("#Debt").html("Median Debt of Graduates: $" + data.GRAD_DEBT_MDN_SUPP);
             }
 
             if(data.md_earn_wne_p10 == "NULL"){
                 $("#Earn").html("Median Earnings of Graduates 10 Years After College: Unknown");
             } else{
-                $("#Earn").html("Median Earnings of Graduates 10 Years After College: " + data.md_earn_wne_p10);
+                $("#Earn").html("Median Earnings of Graduates 10 Years After College: $" + data.md_earn_wne_p10);
             }
 
         }
