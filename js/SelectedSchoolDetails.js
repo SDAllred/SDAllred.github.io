@@ -8,22 +8,18 @@ var Selected = function(cVis) {
     this.cVis = cVis;
 
 
-        // build the graph
-    //buildInfo(null);
 
-
-
-    // this builds the graph.
-    // id = the id of the svg
-    // data = this is what is going to be displayed. each element needs the attributes .INSTNM and .Data
-    // widthT , heightT - height and width of the svg
+    // this builds the selected school
+    // data = this is what is going to be displayed.
     this.buildInfo = function(data)
     {
 
 
 
+        //Makes sure a school is selected
         if(data != "") {
 
+            //Add in data for each field.
             $("#NoData").html("");
             $("#SchoolName").html(data.INSTNM);
 
@@ -78,6 +74,7 @@ var Selected = function(cVis) {
                 $("#OutState").html("Out-of-State Tuition: $" + data.TUITIONFEE_OUT);
             }
 
+            //Merges the two cost columns
             if(data.COSTT4_A == "NULL"){
                 if(data.COSTT4_P != "NULL") {
                     $("#AvCost").html("Average Cost of Attendance: $" + data.COSTT4_P);
