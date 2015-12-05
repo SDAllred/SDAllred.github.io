@@ -204,11 +204,12 @@ var MapVis = function() {
 		var pts = g.selectAll(".college")
 				.data(d3.values(schools));
 
+				
+				
 		pts.enter().append("circle")
 			.classed("college",true)
-			.classed("hidden",true)
-			;
-				
+			.classed("hidden",true);	
+			
 				
 				
 		pts.exit()
@@ -251,6 +252,11 @@ var MapVis = function() {
 		.each(function(){
 			this.parentNode.appendChild(this);
 		})
+		
+		
+		
+		
+		
 	}
 
 
