@@ -55,6 +55,7 @@ var Graphs = function(cVis) {
 			
 		}
 
+
 		// build the graph 
 		this.buildGraph("GroupChart",Gschools,1700,300);
 		

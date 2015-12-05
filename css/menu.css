@@ -17,16 +17,16 @@ ul#menu {
 
 #menu li a {
     display: block;
-    color: white;
+    color: #BBBBBB;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
 }
 
 #menu li a:hover:not(.active) {
-    background-color: #111;
+    background-color: #272727;
 }
 
 #menu .active {
-    background-color: #4CAF50;
+    background-color: #BB1F1F;
 }

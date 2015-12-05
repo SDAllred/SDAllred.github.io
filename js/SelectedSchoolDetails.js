@@ -113,6 +113,19 @@ var Selected = function(cVis) {
                 $("#Earn").html("Median Earnings of Graduates 10 Years After College: $" + data.md_earn_wne_p10);
             }
 
+
+            if(data.ACTCMMID == "NULL"){
+                $("#Act").html("Median ACT Score Admitted: Unknown");
+            } else{
+                $("#Act").html("Median ACT Score Admitted: $" + data.ACTCMMID);
+            }
+
+            if(data.SAT_AVG == "NULL"){
+                $("#Sat").html("Mean SAT Score Admitted: Unknown");
+            } else{
+                $("#Sat").html("Mean SAT Score Admitted: $" + data.SAT_AVG);
+            }
+
         }
 
 
