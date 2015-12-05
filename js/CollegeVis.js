@@ -39,7 +39,20 @@ CollegeVis.prototype.update = function(){
 	// updated filtered school list 
 	self.fschools = self.filterData();
 
-	self.SelectedSchoolDetails.buildInfo(self.SelectedSchool);
+    var sch;
+    if(self.SelectedSchool == ""){
+        sch = self.SelectedSchool
+    }else {
+
+        for (var i = 0; i < self.fschools.length; i++) {
+            if (self.fschools[i].UNITID == self.SelectedSchool) {
+                sch = self.fschools[i];
+                break;
+            }
+        }
+    }
+
+	self.SelectedSchoolDetails.buildInfo(sch);
 	
 	
 	// update graphs,etc
@@ -152,7 +165,7 @@ CollegeVis.prototype.filterData = function(){
 		//{
 		if((schools[sc].UGDS === "NULL" || schools[sc].UGDS === "n/a") && (!$("#nullPop").is(":checked")))
 			add++;	
-		if(((parseInt(schools[sc].UGDS) >= self.fData["UGDS"].min1) && (parseInt(schools[sc].UGDS) <= self.fData["UGDS"].max1)) || ((parseInt(schools[sc].UGDS) >= self.fData["UGDS"].min2) && (parseInt(schools[sc].UGDS) <= self.fData["UGDS"].max2)))
+		if(((parseInt(schools[sc].UGDS) > self.fData["UGDS"].min1) && (parseInt(schools[sc].UGDS) < self.fData["UGDS"].max1)) || ((parseInt(schools[sc].UGDS) > self.fData["UGDS"].min2) && (parseInt(schools[sc].UGDS) < self.fData["UGDS"].max2)))
 			add++;
 		//}
 		

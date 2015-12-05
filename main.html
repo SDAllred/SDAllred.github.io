@@ -4,6 +4,20 @@
     <meta charset="UTF-8">
     <title>Project</title>
 	
+	 <style>
+        filter{
+            font-size: 60%;
+			//padding-bottom: 300px;
+        }
+		filter2{
+            font-size: 80%;
+        }
+		filter3{
+           
+			padding-top: 50px;
+        }
+    </style>
+	
 	<!-- external javascript libraries -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
@@ -67,48 +81,48 @@
 						<div class="filters">
 							<h1>Filters</h1>    
 							<p>
-								<label for="amount">Avg Sat Admitted:</label><span id="SatAvgVal" ></span>
+								<label for="amount">Avg Sat Admitted: </label><span id="SatAvgVal" ></span>
 								<div id="SatAvgSlider"></div>
 							</p>
 							<form id="nullSAT">
-								<input type="checkbox" id="nullSat" value="null"/>Remove schools with no SAT score data<br>
+								<input type="checkbox" id="nullSat" value="null"/><filter>Remove schools with no SAT score data</filter><br>
 							</form>
 							<p>
-								<label for="amount">Median of Act Admitted:</label><span id="ActMedianVal" ></span>
+								<label for="amount">Median of Act Admitted: </label><span id="ActMedianVal" ></span>
 								<div id="ActMedianSlider"></div>
 							</p>
 							<form id="nullACT">
-								<input type="checkbox" id="nullAct" value="null"/>Remove schools with no ACT score data<br>
+								<input type="checkbox" id="nullAct" value="null"/><filter>Remove schools with no ACT score data</filter><br>
 							</form>
 							<p>
-								<label for="amount">Tuition Cost In-State:</label><span id="TuitionCostInVal" ></span>
+								<label for="amount">Tuition Cost In-State: </label><span id="TuitionCostInVal" ></span>
 								<div id="TuitionCostInSlider"></div>
 							</p>
 							<form id="nullTuitionIn">
-								<input type="checkbox" id="nullIn" value="null"/>Remove schools with no in-state tuition Cost data<br>
+								<input type="checkbox" id="nullIn" value="null"/><filter>Remove schools with no in-state tuition cost</filter><br>
 							</form>
 							<p>
-								<label for="amount">Tuition Cost Out-of-State:</label><span id="TuitionCostOutVal" ></span>
+								<label for="amount">Tuition Cost Out-of-State: <br></label><span id="TuitionCostOutVal" ></span>
 								<div id="TuitionCostOutSlider"></div>
 							</p>
 							<form id="nullTuitionOut">
-								<input type="checkbox" id="nullOut" value="null"/>Remove schools with no out-of-state tuition Cost data<br>
+								<input type="checkbox" id="nullOut" value="null"/><filter>Remove schools with no out-of-state tuition cost</filter><br>
 							</form>
 							Size of Student Population
 							<form id="studentPop">
-								<input type="checkbox" id="small" value="small"  checked/>Small (> 2,000)<br>
-								<input type="checkbox" id="medium" value="Medium" checked/>Medium (2,000 - 15,000)<br>
-								<input type="checkbox" id="large" value="Large" checked/>Large (< 15,000)<br>
+								<input type="checkbox" id="small" value="small"  checked/><filter2>Small (> 2,000)</filter2><br>
+								<input type="checkbox" id="medium" value="Medium" checked/><filter2>Medium (2,000 - 15,000)</filter2><br>
+								<input type="checkbox" id="large" value="Large" checked/><filter2>Large (< 15,000)</filter2><br>
 							</form>
 							<form id="nullPopulation">
-								<input type="checkbox" id="nullPop" value="null"/>Remove schools with no student population data<br>
+								<input type="checkbox" id="nullPop" value="null"/><filter>Remove schools with no student population data</filter><br>
 							</form>
-								<br/><br/>
+								
 							Type of School
 							<form id="schoolType">
-								<input type="checkbox" id="public" value="public"  checked/>Public<br>
-								<input type="checkbox" id="private" value="private" checked/>Private<br>
-								<input type="checkbox" id="privateFP" value="privateFP" checked/>Private For-Profit<br>
+								<input type="checkbox" id="public" value="public"  checked/><filter2>Public</filter2><br>
+								<input type="checkbox" id="private" value="private" checked/><filter2>Private</filter2><br>
+								<input type="checkbox" id="privateFP" value="privateFP" checked/><filter2>Private For-Profit</filter2><br>
 							</form>
 						</div>
 
@@ -131,7 +145,7 @@
 							<button id="SSTopButton">Move to Top</button>
 							<button id="SSRemoveButton">Remove Schools</button>
 							<div>
-							Sort by 
+							Sort by
 							<button id="SortTitle" asc="false" value="INSTNM"  class="SortButton">Title</button>
 							<button id="SortType" asc="false" value="CONTROL" class="SortButton">Type</button>
 							<button id="SortDebt" asc="false" value="GRAD_DEBT_MDN_SUPP" class="SortButton">Debt</button>
@@ -146,10 +160,22 @@
 						</div>
 
 
-						<div class="selectedSchool">
-							<h1 id = "NoData" >Select a School!</h1>
-							<h1 id = "SchoolName" ></h1>
-							<p id = "SchoolDetails"></p>
+					<div class="selectedSchool">
+						<h1 id = "NoData" >Select a School!</h1>
+						<h2 id = "SchoolName" ></h2>
+						<p id = "SchoolDetails"></p>
+						<p id = "MenWomen"></p>
+						<p id = "Satellite"></p>
+						<p id = "Online"></p>
+						<p id = "AdminRate"></p>
+						<p id = "Pop"></p>
+						<p id = "InState"></p>
+						<p id = "OutState"></p>
+						<p id = "Pell"></p>
+						<p id = "Loan"></p>
+						<p id = "Debt"></p>
+						<p id = "Earn"></p>
+
 
 
 						</div>

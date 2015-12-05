@@ -130,30 +130,30 @@ function createFilters(cVis) {
 			{
 				val.min1 = 0;
 				val.min2 = 0;
-				val.max1 = 15000;
-				val.max2 = 15000;
+				val.max1 = 15001;
+				val.max2 = 15001;
 				
 				if($("#large").is(":checked"))
 				{
 					val.min1 = 0;
 					val.min2 = 0;
-				    val.max1 = 50000;
-					val.max2 = 50000;
+				    val.max1 = 50001;
+					val.max2 = 50001;
 				}
 			}
 			else if($("#large").is(":checked"))
 			{
 				val.min1 = 0;
-				val.min2 = 15001;
-				val.max1 = 1999;
-				val.max2 = 50000;
+				val.min2 = 15000;
+				val.max1 = 2000;
+				val.max2 = 50001;
 			}
 			else
 			{
 				val.min1 = 0;
 				val.min2 = 0;
-				val.max1 = 1999;
-				val.max2 = 1999;
+				val.max1 = 2000;
+				val.max2 = 2000;
 			}
 		}
 		
@@ -161,26 +161,26 @@ function createFilters(cVis) {
 		{
 			if($("#large").is(":checked"))
 			{
-				val.min1 = 2000;
-				val.min2 = 2000;
-				val.max1 = 50000;
-				val.max2 = 50000;
+				val.min1 = 1999;
+				val.min2 = 1999;
+				val.max1 = 50001;
+				val.max2 = 50001;
 			}
 			else
 			{
-				val.min1 = 2000;
-				val.min2 = 2000;
-				val.max1 = 15000;
-				val.max2 = 15000;
+				val.min1 = 1999;
+				val.min2 = 1999;
+				val.max1 = 15001;
+				val.max2 = 15001;
 			}
 		}
 		
 		else if($("#large").is(":checked"))
 		{
-			val.min1 = 15001;
-			val.min2 = 15001;
-			val.max1 = 50000;
-			val.max2 = 50000;
+			val.min1 = 15000;
+			val.min2 = 15000;
+			val.max1 = 50001;
+			val.max2 = 50001;
 		}
 		else
 		{
