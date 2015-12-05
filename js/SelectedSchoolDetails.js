@@ -117,13 +117,13 @@ var Selected = function(cVis) {
             if(data.ACTCMMID == "NULL"){
                 $("#Act").html("Median ACT Score Admitted: Unknown");
             } else{
-                $("#Act").html("Median ACT Score Admitted: $" + data.ACTCMMID);
+                $("#Act").html("Median ACT Score Admitted: " + data.ACTCMMID);
             }
 
             if(data.SAT_AVG == "NULL"){
                 $("#Sat").html("Mean SAT Score Admitted: Unknown");
             } else{
-                $("#Sat").html("Mean SAT Score Admitted: $" + data.SAT_AVG);
+                $("#Sat").html("Mean SAT Score Admitted: " + data.SAT_AVG);
             }
 
         }
