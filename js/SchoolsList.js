@@ -18,7 +18,7 @@ function renderSparkline(cellNode, row, dataContext, colDef) {
 	  dataContext.GRAD_DEBT_MDN_SUPPsc,
 	  dataContext.COSTT4_Asc,
 	  dataContext.ADM_RATEsc,
-	  dataContext.md_earn_wne_p10scContext
+	  dataContext.md_earn_wne_p10sc
 	];
 
 	$(cellNode).empty().sparkline(vals, {
@@ -546,19 +546,19 @@ var SchoolsList = function(cVis) {
 		
 		// get max values for  scaling
 		// pop
-		var UGDSmax = d3.max(schools , function(d) { if (d.UGDS != "NULL" ) return parseFloat(d.UGDS);});
+		var UGDSmax = d3.max(schools , function(d) { if (!isNaN(d.UGDS) ) return parseFloat(d.UGDS);});
 		
 		// GRAD_DEBT_MDN_SUPP
-		var GRAD_DEBT_MDN_SUPPmax = d3.max(schools , function(d) { if (d.GRAD_DEBT_MDN_SUPP != "NULL" ) return parseFloat(d.GRAD_DEBT_MDN_SUPP);});
+		var GRAD_DEBT_MDN_SUPPmax = d3.max(schools , function(d) { if (!isNaN(d.GRAD_DEBT_MDN_SUPP) ) return parseFloat(d.GRAD_DEBT_MDN_SUPP);});
 		
 		//ADM_RATE
-		var ADM_RATEmax = d3.max(schools , function(d) { if (d.ADM_RATE != "NULL" ) return parseFloat(d.ADM_RATE);});
+		var ADM_RATEmax = d3.max(schools , function(d) { if (!isNaN(d.ADM_RATE) ) return parseFloat(d.ADM_RATE);});
 		
 		//cost
-		var COSTT4_AMax = d3.max(schools , function(d) { if (d.COSTT4_A != "NULL" ) return parseFloat(d.COSTT4_A);});
+		var COSTT4_AMax = d3.max(schools , function(d) { if (!isNaN(d.COSTT4_A)) return parseFloat(d.COSTT4_A);});
 		
 		//md_earn_wne_p10
-		var md_earn_wne_p10max = d3.max(schools , function(d) { if (d.md_earn_wne_p10 != "NULL" ) return parseFloat(d.md_earn_wne_p10);});
+		var md_earn_wne_p10max = d3.max(schools , function(d) { if (!isNaN(d.md_earn_wne_p10)) return parseFloat(d.md_earn_wne_p10);});
 		
 		
 		
@@ -569,8 +569,8 @@ var SchoolsList = function(cVis) {
 			
 			// scale data 
 			// population
-			if( schools[sc].UGDS != "NULL")
-				data[sc].UGDSsc = (parseFloat(schools[sc].UGDS) / UGDSmax).toFixed(2) 
+			if(! isNaN(schools[sc].UGDS))
+				data[sc].UGDSsc = (parseFloat(schools[sc].UGDS) / UGDSmax).toFixed(2);
 			else
 			{
 				data[sc].UGDSsc = 0;
@@ -595,7 +595,7 @@ var SchoolsList = function(cVis) {
 
 			
 			// cost 
-			if( schools[sc].COSTT4_A != "NULL")
+			if(! isNaN(schools[sc].COSTT4_A))
 				data[sc].COSTT4_Asc =  (parseFloat(schools[sc].COSTT4_A) / COSTT4_AMax).toFixed(2) 
 			else
 			{
@@ -605,9 +605,9 @@ var SchoolsList = function(cVis) {
 			
 			
 			
-			data[sc].GRAD_DEBT_MDN_SUPPsc = ( schools[sc].GRAD_DEBT_MDN_SUPP != "NULL" ) ?  (parseFloat(schools[sc].GRAD_DEBT_MDN_SUPP) / GRAD_DEBT_MDN_SUPPmax).toFixed(2) : "n/a";
-			data[sc].ADM_RATEsc = ( schools[sc].ADM_RATE != "NULL" ) ?  (parseFloat(schools[sc].ADM_RATE) / ADM_RATEmax).toFixed(2) : "n/a";
-			data[sc].md_earn_wne_p10sc = ( schools[sc].md_earn_wne_p10 != "NULL" ) ?  (parseFloat(schools[sc].md_earn_wne_p10) / md_earn_wne_p10max).toFixed(2) : "n/a";
+			data[sc].GRAD_DEBT_MDN_SUPPsc = (! isNaN(schools[sc].GRAD_DEBT_MDN_SUPP)) ?  (parseFloat(schools[sc].GRAD_DEBT_MDN_SUPP) / GRAD_DEBT_MDN_SUPPmax).toFixed(2) : 0;
+			data[sc].ADM_RATEsc = (! isNaN(schools[sc].ADM_RATE) ) ?  (parseFloat(schools[sc].ADM_RATE) / ADM_RATEmax).toFixed(2) : 0;
+			data[sc].md_earn_wne_p10sc = (! isNaN(schools[sc].md_earn_wne_p10)) ?  (parseFloat(schools[sc].md_earn_wne_p10) / md_earn_wne_p10max).toFixed(2) : 0;
 		}
 	
 		return data;
