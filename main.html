@@ -6,16 +6,13 @@
 
 	 <style>
         filter{
-            font-size: 60%;
+            font-size: 15px;
 			//padding-bottom: 300px;
         }
 		filter2{
             font-size: 80%;
         }
-		filter3{
 
-			padding-top: 50px;
-        }
     </style>
 
 	<!-- external javascript libraries -->
@@ -114,13 +111,13 @@
 								<input type="checkbox" id="nullIn" value="null"/><filter>Remove schools with no in-state tuition cost</filter><br>
 							</form>
 							<p>
-								<label for="amount">Tuition Cost Out-of-State: <br></label><span id="TuitionCostOutVal" ></span>
+								<label for="amount">Tuition Cost Out-of-State: </label><span id="TuitionCostOutVal" ></span>
 								<div id="TuitionCostOutSlider"></div>
 							</p>
 							<form id="nullTuitionOut">
 								<input type="checkbox" id="nullOut" value="null"/><filter>Remove schools with no out-of-state tuition cost</filter><br>
 							</form>
-							Size of Student Population
+							<p>Size of Student Population</p>
 							<form id="studentPop">
 								<input type="checkbox" id="small" value="small"  checked/><filter2>Small (> 2,000)</filter2><br>
 								<input type="checkbox" id="medium" value="Medium" checked/><filter2>Medium (2,000 - 15,000)</filter2><br>
@@ -130,7 +127,7 @@
 								<input type="checkbox" id="nullPop" value="null"/><filter>Remove schools with no student population data</filter><br>
 							</form>
 								
-							Type of School
+							<p>Type of School</p>
 							<form id="schoolType">
 								<input type="checkbox" id="public" value="public"  checked/><filter2>Public</filter2><br>
 								<input type="checkbox" id="private" value="private" checked/><filter2>Private</filter2><br>
@@ -157,7 +154,7 @@
 							<button id="SSTopButton">Move to Top</button>
 							<button id="SSRemoveButton">Remove Schools</button>
 							<div>
-							Sort by
+							Sort by:
 							<button id="SortTitle" asc="false" value="INSTNM"  class="SortButton">Title</button>
 							<button id="SortType" asc="false" value="CONTROL" class="SortButton">Type</button>
 							<button id="SortDebt" asc="false" value="GRAD_DEBT_MDN_SUPP" class="SortButton">Debt</button>
@@ -173,6 +170,7 @@
 
 
 					<div class="selectedSchool">
+						<h1></h1>
 						<h1 id = "NoData" >Double Click to select a School!</h1>
 						<h2 id = "SchoolName" ></h2>
 						<p id = "SchoolDetails"></p>
@@ -187,6 +185,8 @@
 						<p id = "Loan"></p>
 						<p id = "Debt"></p>
 						<p id = "Earn"></p>
+						<p id = "Act"></p>
+						<p id = "Sat"></p>
 
 
 

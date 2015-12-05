@@ -21,7 +21,7 @@ body{
 
 #SelectorRow {
 	width:1800px;
-	height:700px;
+	height:800px;
 	margin-bottom:100px;
 	margin-left: 50px;
 
@@ -54,7 +54,7 @@ body{
 	text-align:left;
 	padding-right: 20px;
 	color: #BBBBBB;
-	font-size: 15px;
+	font-size: 17px;
 	margin:20px;
 }
 .map {
@@ -82,7 +82,7 @@ body{
 	float: left;
 	width: 50%;
 	height: 100%;
-
+	color: #BBBBBB;
 	text-align:center;
 	margin-right: 10px;
 	display: inline-block;
