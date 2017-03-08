@@ -150,6 +150,26 @@ body{
 	width:1800px;
 
 }
+.groupDetails2 {
+	width: 1800px;
+	height: 100px;
+	margin-top: 100px;
+	/*float: left;*/
+	text-align:center;
+	font-size:18px;
+	display: inline-block;
+	color: #BBBBBB;
+	/*border: 1px solid black;*/
+}
+
+.groupDetails2 input{
+	font-size:inherit;
+}
+.groupDetails2 select{
+	font-size:inherit;
+}
+
+
 
 .groupDetails {
 	width: 1800px;
