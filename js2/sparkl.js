@@ -75,12 +75,18 @@ var sparkl = function(cVis){
 
         // Scale functions
         // Setting the range with the margin
+
             y = d3.scale.linear()
                 .domain([0, 0])
                 .range([h - yMargin, yMargin]),
             x = d3.time.scale()
                 .domain(d3.extent(data, function(d) { return d.date; }))
                 .range([xMargin, w - xMargin]),
+
+            x2 = d3.time.scale()
+                .domain(d3.extent(data, function(d) { return d.end; }))
+                .range([xMargin, w - xMargin]),
+
 
         // Scale functions for creating the gradient fill/stroke
         // Calculating the color according to data2 in the range of colors
@@ -119,7 +125,7 @@ var sparkl = function(cVis){
                 d3.svg.axis()
                     .scale(x)
                     .orient("bottom")
-                    .ticks(data.length/2)
+                    .ticks(22)
                     .tickSize(-h+(yMargin*2), 0, 0)
                     .tickFormat(d3.time.format("%I:%M %p"))
             );
@@ -181,10 +187,12 @@ var sparkl = function(cVis){
             console.log(tooltipLeft);
             // Position it again
             $tooltip.css({
-                left: tooltipLeft + "px",
-                top: (position.y + 100) + "px"
+                left: (tooltipLeft + w/2 + 90) + "px",
+                top: position.y + "px"
             });
         }
+
+
         // Create tooltip
 
 
@@ -284,97 +292,6 @@ var sparkl = function(cVis){
     
     
     
-    
-    
-}
 
-// $('.js2-report-sparkline').each(function(sparklineId) {
-//
-//
-//
-//     var th = $(this),
-//
-//     // Instead of splitting with "," we are passing the data2 in JSON format
-//     // Because splitting may cause getting datas as string
-//     // And that breaks scale calculators
-//     // Also this chain clears the HTML content
-//         data2 = [
-//             // {
-//             //   'sdate':'12:00 AM',
-//             //   'edate':'12:00 AM',
-//             //   'value':1,
-//             //   'sduration': 0,
-//             //   'duration': 0
-//             // },
-//             {
-//                 'sdate':'12:00 AM',
-//                 'edate':'6:44 AM',
-//                 'value':1,
-//                 'sduration': 6.73,
-//                 'duration': 6.73
-//             },
-//             {
-//                 'sdate':'6:44 AM',
-//                 'edate':'7:05 AM',//start time
-//                 'value':2,
-//                 'sduration':  6.73 + 0.35,
-//                 'duration':  0.35
-//             },
-//             // {
-//             //   'date':'7:05 AM',
-//             //   'value':2
-//             // },
-//             {
-//                 'sdate':'7:05 AM',
-//                 'edate':'7:45 AM',
-//                 'value': 3,
-//                 'sduration': 7.08 + 0.66,
-//                 'duration': 0.66
-//             },
-//             // {
-//             //   'date':'7:45 AM',
-//             //   'value':4
-//             // },
-//             {
-//                 'sdate':'7:45 AM',
-//                 'edate':'12:00 PM',
-//                 'value':4,
-//                 'sduration': 7.08 + 0.66 + 4.25,
-//                 'duration': 4.25
-//             },
-//             // {
-//             //   'date':'12:00 PM',
-//             //   'value':6
-//             // },
-//             {
-//                 'sdate':'12:00 PM',
-//                 'edate':'8:00 PM',
-//                 'value':5,
-//                 'sduration': 7.08 + 0.66 + 4.25 + 8,
-//                 'duration': 8
-//             },
-//             // {
-//             //   'date':'8:00 PM', //end time
-//             //   'value':3
-//             // },
-//             {
-//                 'sdate':'8:00 PM',
-//                 'edate':'11:59 PM',
-//                 'value':6,
-//                 'sduration': 7.08 + 0.66 + 4.25 + 8 + 3,
-//                 'duration': 3
-//             },
-//             {
-//                 'sdate':'11:59 PM', //end time
-//                 'edate':'11:59 PM',
-//                 'value':1,
-//                 'sduration': 0,
-//                 'duration': 0
-//             },
-//         ];
-//    
-//    
-//    
-//    
-//   
-// });
+
+}
