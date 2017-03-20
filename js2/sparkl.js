@@ -93,7 +93,7 @@ var sparkl = function(cVis){
         // That user has passed with the data2-range-[high-low]-color attributes
             gradientY = d3.scale.linear()
                 .domain([1,2,3,4,5,6,7,8,9,10,11,12,13,14])
-                .range(['#8342f4', '#28a335', '#af1635', '#ea8b38', '#fff200', '#ea98e1', '#7ab6cc', '#296382', '#c193b0', '#ff3a54', '#ffbb28', '#1cbfa1', '#4e821f', '#dd4d00']),
+                .range(['#8342f4', '#28a335', '#af1635', '#ea8b38', '#fff200', '#ea98e1', '#7ab6cc', '#296382', '#60324f', '#ff3a54', '#ffbb28', '#1cbfa1', '#4e821f', '#dd4d00']),
 
 
                 //"Consumer Purchases", "Eating/drinking", "Education", "Exercise", "Household", "Personal Care", "Religious", "Sleep", "Socializing/Leisure", "Spending Time With Husband", "Telephone", "Traveling", "Volunteer", "Work"
